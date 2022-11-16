@@ -2,7 +2,7 @@
 
 this ia a typescript client for the [intavia api](https://intavia-backend.acdh-dev.oeaw.ac.at).
 
-wou can find more info about the project on the [intavia website](https://intavia.eu).
+you can find more info about the project on the [intavia website](https://intavia.eu).
 
 ## how to use
 
