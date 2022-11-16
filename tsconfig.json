@@ -1,0 +1,9 @@
+{
+  "extends": "@stefanprobst/tsconfig",
+  "compilerOptions": {
+    "declaration": true,
+    "noEmit": false,
+    "outDir": "dist"
+  },
+  "include": ["./src/*.ts"]
+}
