@@ -70,6 +70,6 @@
   "simple-git-hooks": {
     "commit-msg": "npx commitlint --edit",
     "pre-commit": "npx lint-staged",
-    "validate": "npm run validate"
+    "pre-push": "npm run validate"
   }
 }
