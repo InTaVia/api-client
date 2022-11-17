@@ -3,7 +3,7 @@ import type { Geometry } from 'geojson'
 import type { InternationalizedLabel, IsoDateString, UriString, UrlString } from './types'
 
 export interface Dataset {
-  id: "https://apis.acdh.oeaw.ac.at/data"| "http://ldf.fi/nbf/data"| "http://data.biographynet.nl/" | "http://www.intavia.eu/sbi"
+  id: "http://data.biographynet.nl/" | "http://ldf.fi/nbf/data" | "http://www.intavia.eu/sbi" | "https://apis.acdh.oeaw.ac.at/data"
 }
 
 export interface Gender {
