@@ -1,6 +1,6 @@
 {
   "name": "@intavia/api-client",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "license": "MIT",
   "type": "module",
   "source": "./src/index.ts",
@@ -21,6 +21,7 @@
     "lint": "eslint . --cache --ignore-path .gitignore",
     "lint:fix": "npm run lint -- --fix",
     "prepare": "run-s setup",
+    "prepublishOnly": "npm run build",
     "setup": "simple-git-hooks || exit 0",
     "typecheck": "tsc --noEmit",
     "test": "exit 0",
