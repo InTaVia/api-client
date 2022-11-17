@@ -2,6 +2,10 @@ import type { Geometry } from 'geojson'
 
 import type { InternationalizedLabel, IsoDateString, UriString, UrlString } from './types'
 
+export interface Dataset {
+  id: "https://apis.acdh.oeaw.ac.at/data"| "http://ldf.fi/nbf/data"| "http://data.biographynet.nl/" | "http://www.intavia.eu/sbi"
+}
+
 export interface Gender {
   id: UriString
   label: InternationalizedLabel

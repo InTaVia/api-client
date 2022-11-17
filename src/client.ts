@@ -5,12 +5,14 @@ import { request } from '@stefanprobst/request'
 
 import { createApiUrl } from './lib'
 import type {
+  Dataset,
   Entity,
   EntityEvent,
   EntityKind,
   Gender,
   Occupation,
   OccupationWithRelations,
+  Place,
 } from './models'
 import type { Bin, IsoDateString, PaginatedRequest, PaginatedResponse, RootNode } from './types'
 
@@ -73,7 +75,7 @@ export namespace SearchEntities {
     /**
      * Filter persons by gender id (uri).
      */
-    gender_id?: Gender['id']
+    gender_id?: Array<Gender['id']>
     /**
      * Filter persons born before a certain date.
      */
@@ -90,6 +92,18 @@ export namespace SearchEntities {
      * Filter persons died after a certain date.
      */
     diedAfter?: IsoDateString
+    /**
+     * Filter by related place labels.
+     */
+    relatedPlace?: string
+    /**
+     * Filter by related places.
+     */
+    relatedPlaces_id?: Array<Place['id']>
+    /**
+     * Limit query to source datasets.
+     */
+    datasets: Array<Dataset['id']>
   }>
   export type Params = SearchParams
   export type Response = PaginatedResponse<Entity>
@@ -213,7 +227,7 @@ export namespace BirthStatisticsSearch {
     /**
      * Filter persons by gender id (uri).
      */
-    gender_id?: Gender['id']
+    gender_id?: Array<Gender['id']>
     /**
      * Filter persons born before a certain date.
      */
@@ -230,6 +244,18 @@ export namespace BirthStatisticsSearch {
      * Filter persons died after a certain date.
      */
     diedAfter?: IsoDateString
+    /**
+     * Filter by related place labels.
+     */
+    relatedPlace?: string
+    /**
+     * Filter by related places.
+     */
+    relatedPlaces_id?: Array<Place['id']>
+    /**
+     * Limit query to source datasets.
+     */
+    datasets: Array<Dataset['id']>
     /**
      * Into how many bins the result set should be chunked.
      *
@@ -290,7 +316,7 @@ export namespace DeathStatisticsSearch {
     /**
      * Filter persons by gender id (uri).
      */
-    gender_id?: Gender['id']
+    gender_id?: Array<Gender['id']>
     /**
      * Filter persons born before a certain date.
      */
@@ -307,6 +333,18 @@ export namespace DeathStatisticsSearch {
      * Filter persons died after a certain date.
      */
     diedAfter?: IsoDateString
+    /**
+     * Filter by related place labels.
+     */
+    relatedPlace?: string
+    /**
+     * Filter by related places.
+     */
+    relatedPlaces_id?: Array<Place['id']>
+    /**
+     * Limit query to source datasets.
+     */
+    datasets: Array<Dataset['id']>
     /**
      * Into how many bins the result set should be chunked.
      *
@@ -367,7 +405,7 @@ export namespace OccupationStatisticsSearch {
     /**
      * Filter persons by gender id (uri).
      */
-    gender_id?: Gender['id']
+    gender_id?: Array<Gender['id']>
     /**
      * Filter persons born before a certain date.
      */
@@ -384,6 +422,18 @@ export namespace OccupationStatisticsSearch {
      * Filter persons died after a certain date.
      */
     diedAfter?: IsoDateString
+    /**
+     * Filter by related place labels.
+     */
+    relatedPlace?: string
+    /**
+     * Filter by related places.
+     */
+    relatedPlaces_id?: Array<Place['id']>
+    /**
+     * Limit query to source datasets.
+     */
+    datasets: Array<Dataset['id']>
   }
   export type Params = SearchParams
   export type Response = {
