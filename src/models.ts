@@ -3,7 +3,11 @@ import type { Geometry } from 'geojson'
 import type { InternationalizedLabel, IsoDateString, UriString, UrlString } from './types'
 
 export interface Dataset {
-  id: "http://data.biographynet.nl/" | "http://ldf.fi/nbf/data" | "http://www.intavia.eu/sbi" | "https://apis.acdh.oeaw.ac.at/data"
+  id:
+    | 'http://data.biographynet.nl/'
+    | 'http://ldf.fi/nbf/data'
+    | 'http://www.intavia.eu/sbi'
+    | 'https://apis.acdh.oeaw.ac.at/data'
 }
 
 export interface Gender {
@@ -69,7 +73,7 @@ export interface EntityEventRelation {
   id: string
   label: InternationalizedLabel
   description?: string
-  entity: Entity
+  entity: Entity['id']
   role?: EntityRelationRole
   source?: Source
 }
@@ -82,7 +86,7 @@ export interface EntityEvent {
   source?: Source
   startDate?: IsoDateString
   endDate?: IsoDateString
-  place?: Place
+  place?: Place['id']
   relations: Array<EntityEventRelation>
 }
 
