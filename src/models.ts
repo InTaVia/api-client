@@ -60,12 +60,12 @@ export interface Source {
 }
 
 export interface EntityRelationRole {
-  id: string
+  id: UriString
   label: InternationalizedLabel
 }
 
 export interface EntityEventKind {
-  id: string
+  id: UriString
   label: InternationalizedLabel
 }
 
@@ -74,7 +74,7 @@ export interface EntityEventRelation {
   label: InternationalizedLabel
   description?: string
   entity: Entity['id']
-  role?: EntityRelationRole
+  role?: EntityRelationRole['id']
   source?: Source
 }
 
@@ -82,7 +82,7 @@ export interface EntityEvent {
   id: string
   label: InternationalizedLabel
   description?: string
-  kind?: EntityEventKind
+  kind?: EntityEventKind['id']
   source?: Source
   startDate?: IsoDateString
   endDate?: IsoDateString
