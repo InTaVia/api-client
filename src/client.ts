@@ -16,34 +16,60 @@ import type {
 } from './models'
 import type { Bin, IsoDateString, PaginatedRequest, PaginatedResponse, RootNode } from './types'
 
-export namespace GetEntitiesById {
-  export type SearchParams = PaginatedRequest<{
-    ids: Array<Entity['id']>
-  }>
-  export type Params = SearchParams
+export namespace GetEntityById {
+  export type PathParams = {
+    id: Entity['id']
+  }
+  export type Params = PathParams
   export type Response = PaginatedResponse<Entity>
 }
 
-export const getEntitiesById = {
-  pathname(): string {
-    return '/api/entities/id'
+export const getEntityById = {
+  pathname(params: GetEntityById.PathParams): string {
+    return `/v2/api/entity/${encodeURIComponent(params.id)}`
   },
-  searchParams(params: GetEntitiesById.SearchParams): GetEntitiesById.SearchParams {
-    return params
-  },
-  url(params: GetEntitiesById.Params): URL {
+  url(params: GetEntityById.Params): URL {
     const url = createApiUrl({
-      pathname: getEntitiesById.pathname(),
-      searchParams: getEntitiesById.searchParams(params),
+      pathname: getEntityById.pathname(params),
     })
     return url
   },
   options(): RequestOptions {
     return { responseType: 'json' }
   },
-  request(params: GetEntitiesById.Params): Promise<GetEntitiesById.Response> {
-    const url = getEntitiesById.url(params)
-    const options = getEntitiesById.options()
+  request(params: GetEntityById.Params): Promise<GetEntityById.Response> {
+    const url = getEntityById.url(params)
+    const options = getEntityById.options()
+    return request(url, options)
+  },
+}
+
+//
+
+export namespace GetEventById {
+  export type PathParams = {
+    id: Entity['id']
+  }
+  export type Params = PathParams
+  export type Response = PaginatedResponse<Entity>
+}
+
+export const getEventById = {
+  pathname(params: GetEventById.PathParams): string {
+    return `/v2/api/event/${encodeURIComponent(params.id)}`
+  },
+  url(params: GetEventById.Params): URL {
+    const url = createApiUrl({
+      pathname: getEventById.pathname(params),
+    })
+    return url
+  },
+  options(): RequestOptions {
+    return { responseType: 'json' }
+  },
+  request(params: GetEventById.Params): Promise<GetEventById.Response> {
+    const url = getEventById.url(params)
+    const options = getEventById.options()
     return request(url, options)
   },
 }
@@ -111,7 +137,7 @@ export namespace SearchEntities {
 
 export const searchEntities = {
   pathname(): string {
-    return '/api/entities/search'
+    return '/v2/api/entities/search'
   },
   searchParams(params: SearchEntities.SearchParams): SearchEntities.SearchParams {
     return params
@@ -145,7 +171,7 @@ export namespace SearchEvents {
 
 export const searchEvents = {
   pathname(): string {
-    return '/api/events/search'
+    return '/v2/api/events/search'
   },
   searchParams(params: SearchEvents.SearchParams): SearchEvents.SearchParams {
     return params
@@ -182,7 +208,7 @@ export namespace SearchOccupations {
 
 export const searchOccupations = {
   pathname(): string {
-    return '/api/vocabularies/occupations/search'
+    return '/v1/api/vocabularies/occupations/search'
   },
   searchParams(params: SearchOccupations.SearchParams): SearchOccupations.SearchParams {
     return params
@@ -271,7 +297,7 @@ export namespace BirthStatisticsSearch {
 
 export const searchBirthStatistics = {
   pathname(): string {
-    return '/api/statistics/birth/search'
+    return '/v1/api/statistics/birth/search'
   },
   searchParams(params: BirthStatisticsSearch.SearchParams): BirthStatisticsSearch.SearchParams {
     return params
@@ -360,7 +386,7 @@ export namespace DeathStatisticsSearch {
 
 export const searchDeathStatistics = {
   pathname(): string {
-    return '/api/statistics/death/search'
+    return '/v1/api/statistics/death/search'
   },
   searchParams(params: DeathStatisticsSearch.SearchParams): DeathStatisticsSearch.SearchParams {
     return params
@@ -443,7 +469,7 @@ export namespace OccupationStatisticsSearch {
 
 export const searchOccupationStatistics = {
   pathname(): string {
-    return '/api/statistics/occupations/search'
+    return '/v1/api/statistics/occupations/search'
   },
   searchParams(
     params: OccupationStatisticsSearch.SearchParams,
