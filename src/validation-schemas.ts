@@ -2,7 +2,7 @@ import { z } from 'zod'
 
 import { defaultPageSize } from './config'
 
-const isoDateString = z.string()
+const isoDateString = z.string().datetime()
 
 const urlString = z.string().url()
 

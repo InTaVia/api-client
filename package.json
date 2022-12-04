@@ -31,7 +31,7 @@
     "@stefanprobst/assert": "^1.0.3",
     "@stefanprobst/request": "^0.2.1",
     "@types/geojson": "^7946.0.10",
-    "zod": "^3.19.1"
+    "zod": "^3.20.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.2.0",
