@@ -3,7 +3,7 @@
 import type { RequestOptions } from '@stefanprobst/request'
 import { request } from '@stefanprobst/request'
 
-import { createApiUrl } from './lib'
+import { createApiUrl } from './lib.js'
 import type {
   Dataset,
   Entity,
@@ -13,8 +13,8 @@ import type {
   Occupation,
   OccupationWithRelations,
   Place,
-} from './models'
-import type { Bin, IsoDateString, PaginatedRequest, PaginatedResponse, RootNode } from './types'
+} from './models.js'
+import type { Bin, IsoDateString, PaginatedRequest, PaginatedResponse, RootNode } from './types.js'
 
 export namespace GetEntityById {
   export type PathParams = {

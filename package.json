@@ -15,18 +15,23 @@
   ],
   "sideEffects": false,
   "scripts": {
-    "build": "rimraf dist && microbundle --format cjs,modern",
-    "format": "prettier . --cache --check --ignore-path .gitignore",
-    "format:fix": "npm run format -- --write",
-    "lint": "eslint . --cache --ignore-path .gitignore",
-    "lint:fix": "npm run lint -- --fix",
+    "build": "rm -rf dist && microbundle --format cjs,modern",
+    "format:check": "prettier . --cache --check --ignore-path .gitignore",
+    "format:fix": "pnpm run format:check --write",
+    "lint:check": "eslint . --cache --ignore-path .gitignore",
+    "lint:fix": "pnpm run lint:check --fix",
     "prepare": "run-s setup",
-    "prepublishOnly": "npm run build",
+    "prepublishOnly": "pnpm run build",
     "setup": "simple-git-hooks || exit 0",
-    "typecheck": "tsc --noEmit",
     "test": "exit 0",
-    "validate": "run-s format lint typecheck test"
+    "types:check": "tsc --noEmit",
+    "validate": "run-p format:check lint:check types:check test"
   },
+  "engines": {
+    "node": ">=18",
+    "pnpm": ">=7"
+  },
+  "packageManager": "pnpm@7.18.1",
   "dependencies": {
     "@stefanprobst/assert": "^1.0.3",
     "@stefanprobst/request": "^0.2.1",
@@ -34,28 +39,27 @@
     "zod": "^3.20.0"
   },
   "devDependencies": {
-    "@commitlint/cli": "^17.2.0",
+    "@commitlint/cli": "^17.3.0",
     "@stefanprobst/commitlint-config": "^1.0.3",
-    "@stefanprobst/eslint-config": "^1.0.5",
-    "@stefanprobst/prettier-config": "^2.0.2",
-    "@stefanprobst/tsconfig": "^2.2.1",
-    "eslint": "^8.27.0",
-    "lint-staged": "^13.0.3",
+    "@stefanprobst/eslint-config": "^1.0.9",
+    "@stefanprobst/eslint-config-node": "^4.0.0",
+    "@stefanprobst/prettier-config": "^2.0.3",
+    "@stefanprobst/tsconfig": "^2.2.2",
+    "eslint": "^8.29.0",
+    "lint-staged": "^13.1.0",
     "microbundle": "^0.15.1",
     "npm-run-all": "^4.1.5",
-    "prettier": "^2.8.0",
-    "rimraf": "^3.0.2",
+    "prettier": "^2.8.1",
     "simple-git-hooks": "^2.8.1",
-    "typescript": "^4.9.3"
+    "typescript": "^4.9.4"
   },
   "commitlint": {
-    "extends": [
-      "@stefanprobst/commitlint-config"
-    ]
+    "extends": "@stefanprobst/commitlint-config"
   },
   "eslintConfig": {
     "extends": [
-      "@stefanprobst/eslint-config"
+      "@stefanprobst/eslint-config",
+      "@stefanprobst/eslint-config-node"
     ]
   },
   "lint-staged": {
@@ -63,14 +67,12 @@
       "eslint --cache --fix",
       "prettier --cache --write"
     ],
-    "*.@(json|md)": [
-      "prettier --cache --write"
-    ]
+    "*.!(ts)": "prettier --cache --ignore-unknown --write"
   },
   "prettier": "@stefanprobst/prettier-config",
   "simple-git-hooks": {
-    "commit-msg": "npx commitlint --edit",
-    "pre-commit": "npx lint-staged",
-    "pre-push": "npm run validate"
+    "commit-msg": "pnpm exec commitlint --edit",
+    "pre-commit": "pnpm exec lint-staged",
+    "pre-push": "pnpm run validate"
   }
 }

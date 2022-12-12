@@ -1,6 +1,8 @@
+// @see https://github.com/eslint-community/eslint-plugin-n/issues/66
+// eslint-disable-next-line n/no-missing-import
 import type { Geometry } from 'geojson'
 
-import type { InternationalizedLabel, IsoDateString, UriString, UrlString } from './types'
+import type { InternationalizedLabel, IsoDateString, UriString, UrlString } from './types.js'
 
 export interface Dataset {
   id:

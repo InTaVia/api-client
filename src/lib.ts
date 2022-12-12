@@ -1,7 +1,7 @@
 import { assert } from '@stefanprobst/assert'
 import { type UrlInit, createUrl } from '@stefanprobst/request'
 
-import { baseUrl } from './config'
+import { baseUrl } from './config.js'
 
 type CreateApiUrlParams = Omit<UrlInit, 'baseUrl'>
 

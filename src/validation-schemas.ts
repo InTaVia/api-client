@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-import { defaultPageSize } from './config'
+import { defaultPageSize } from './config.js'
 
 const isoDateString = z.string().datetime()
 
