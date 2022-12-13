@@ -16,6 +16,9 @@
   "sideEffects": false,
   "scripts": {
     "build": "rm -rf dist && microbundle --format cjs,modern",
+    "changeset:add": "changeset add",
+    "changeset:publish": "changeset publish && git push --follow-tags",
+    "changeset:version": "changeset version",
     "format:check": "prettier . --cache --check --ignore-path .gitignore",
     "format:fix": "pnpm run format:check --write",
     "lint:check": "eslint . --cache --ignore-path .gitignore",
@@ -36,12 +39,14 @@
     "@stefanprobst/assert": "^1.0.3",
     "@stefanprobst/request": "^0.2.1",
     "@types/geojson": "^7946.0.10",
-    "zod": "^3.20.0"
+    "zod": "^3.20.2"
   },
   "devDependencies": {
+    "@changesets/changelog-github": "^0.4.7",
+    "@changesets/cli": "^2.25.2",
     "@commitlint/cli": "^17.3.0",
     "@stefanprobst/commitlint-config": "^1.0.3",
-    "@stefanprobst/eslint-config": "^1.0.9",
+    "@stefanprobst/eslint-config": "^1.0.10",
     "@stefanprobst/eslint-config-node": "^4.0.0",
     "@stefanprobst/prettier-config": "^2.0.3",
     "@stefanprobst/tsconfig": "^2.2.2",
