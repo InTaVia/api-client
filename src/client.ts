@@ -46,7 +46,7 @@ export const getEntityById = {
 
 //
 
-export namespace GetEventById {
+export namespace GetEntityEventById {
   export type PathParams = {
     id: Entity['id']
   }
@@ -54,22 +54,22 @@ export namespace GetEventById {
   export type Response = PaginatedResponse<Entity>
 }
 
-export const getEventById = {
-  pathname(params: GetEventById.PathParams): string {
+export const getEntityEventById = {
+  pathname(params: GetEntityEventById.PathParams): string {
     return `/v2/api/event/${encodeURIComponent(params.id)}`
   },
-  url(params: GetEventById.Params): URL {
+  url(params: GetEntityEventById.Params): URL {
     const url = createApiUrl({
-      pathname: getEventById.pathname(params),
+      pathname: getEntityEventById.pathname(params),
     })
     return url
   },
   options(): RequestOptions {
     return { responseType: 'json' }
   },
-  request(params: GetEventById.Params): Promise<GetEventById.Response> {
-    const url = getEventById.url(params)
-    const options = getEventById.options()
+  request(params: GetEntityEventById.Params): Promise<GetEntityEventById.Response> {
+    const url = getEntityEventById.url(params)
+    const options = getEntityEventById.options()
     return request(url, options)
   },
 }

@@ -23,7 +23,7 @@
     "prepare": "run-s setup",
     "prepublishOnly": "pnpm run build",
     "setup": "simple-git-hooks || exit 0",
-    "test": "exit 0",
+    "test": "ts-node --project ./tsconfig.node.json test",
     "types:check": "tsc --noEmit",
     "validate": "run-p format:check lint:check types:check test"
   },
@@ -45,13 +45,16 @@
     "@stefanprobst/eslint-config-node": "^4.0.0",
     "@stefanprobst/prettier-config": "^2.0.3",
     "@stefanprobst/tsconfig": "^2.2.2",
+    "@types/node": "^18.11.9",
     "eslint": "^8.29.0",
     "lint-staged": "^13.1.0",
     "microbundle": "^0.15.1",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.8.1",
     "simple-git-hooks": "^2.8.1",
-    "typescript": "^4.9.4"
+    "ts-node": "^10.9.1",
+    "typescript": "^4.9.4",
+    "uvu": "^0.5.6"
   },
   "commitlint": {
     "extends": "@stefanprobst/commitlint-config"
