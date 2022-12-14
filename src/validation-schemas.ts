@@ -222,17 +222,19 @@ const paginatedRequest = z.object({
 
 //
 
-export const getEntitiesByIdSearchParams = paginatedRequest.merge(
-  z.object({
-    ids: z.array(entityBase.shape.id),
-  }),
-)
+export const getEntityByIdPathParams = z.object({
+  id: entityBase.shape.id,
+})
 
-export const getEntitiesByIdResponse = paginatedResponse.merge(
-  z.object({
-    results: z.array(entity),
-  }),
-)
+export const getEntityByIdResponse = entity
+
+//
+
+export const getEntityEventByIdPathParams = z.object({
+  id: entityEvent.shape.id,
+})
+
+export const getEntityEventByIdResponse = entityEvent
 
 //
 

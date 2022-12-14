@@ -129,7 +129,7 @@ export namespace SearchEntities {
     /**
      * Limit query to source datasets.
      */
-    datasets: Array<Dataset['id']>
+    datasets?: Array<Dataset['id']>
   }>
   export type Params = SearchParams
   export type Response = PaginatedResponse<Entity>
@@ -281,7 +281,7 @@ export namespace BirthStatisticsSearch {
     /**
      * Limit query to source datasets.
      */
-    datasets: Array<Dataset['id']>
+    datasets?: Array<Dataset['id']>
     /**
      * Into how many bins the result set should be chunked.
      *
@@ -370,7 +370,7 @@ export namespace DeathStatisticsSearch {
     /**
      * Limit query to source datasets.
      */
-    datasets: Array<Dataset['id']>
+    datasets?: Array<Dataset['id']>
     /**
      * Into how many bins the result set should be chunked.
      *
@@ -459,7 +459,7 @@ export namespace OccupationStatisticsSearch {
     /**
      * Limit query to source datasets.
      */
-    datasets: Array<Dataset['id']>
+    datasets?: Array<Dataset['id']>
   }
   export type Params = SearchParams
   export type Response = {
