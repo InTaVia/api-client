@@ -1,8 +1,8 @@
 // @internal
-export let baseUrl: URL | string | null = null
+export let baseUrl: URL | string | null = null;
 
 export function configureApiBaseUrl(url: URL | string): void {
-  baseUrl = url
+	baseUrl = url;
 }
 
-export const defaultPageSize = 50
+export const defaultPageSize = 50;

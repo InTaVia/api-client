@@ -1,0 +1,8 @@
+{
+	"$schema": "https://unpkg.com/@changesets/config@2.2.0/schema.json",
+	"access": "public",
+	"baseBranch": "main",
+	"changelog": ["@changesets/changelog-github", { "repo": "intavia/api-client" }],
+	"commit": false,
+	"updateInternalDependencies": "patch"
+}
