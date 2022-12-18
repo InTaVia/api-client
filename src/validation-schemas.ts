@@ -155,8 +155,8 @@ export const entityEventRelation = z.object({
 	id: z.string(),
 	label: internationalizedLabel,
 	description: z.string().optional(),
-	entity,
-	role: entityRelationRole.optional(),
+	entity: z.string() /** entity.shape.id */,
+	role: entityRelationRole.shape.id.optional(),
 	source: source.optional(),
 });
 
@@ -164,11 +164,10 @@ export const entityEvent = z.object({
 	id: z.string(),
 	label: internationalizedLabel,
 	description: z.string().optional(),
-	kind: entityEventKind.optional(),
+	kind: entityEventKind.shape.id.optional(),
 	source: source.optional(),
 	startDate: isoDateString.optional(),
 	endDate: isoDateString.optional(),
-	place: place.optional(),
 	relations: z.array(entityEventRelation).optional(),
 });
 

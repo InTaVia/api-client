@@ -88,7 +88,6 @@ export interface EntityEvent {
 	source?: Source;
 	startDate?: IsoDateString;
 	endDate?: IsoDateString;
-	place?: Place["id"];
 	relations: Array<EntityEventRelation>;
 }
 
