@@ -7,12 +7,11 @@ import { createApiUrl } from "./lib.js";
 import type {
 	Dataset,
 	Entity,
-	EntityEvent,
 	EntityKind,
+	Event,
 	Gender,
 	Occupation,
-	OccupationWithRelations,
-	Place,
+	VocabularyEntry,
 } from "./models.js";
 import type { Bin, IsoDateString, PaginatedRequest, PaginatedResponse, RootNode } from "./types.js";
 
@@ -21,7 +20,7 @@ export namespace GetEntityById {
 		id: Entity["id"];
 	};
 	export type Params = PathParams;
-	export type Response = PaginatedResponse<Entity>;
+	export type Response = Entity;
 }
 
 export const getEntityById = {
@@ -48,10 +47,10 @@ export const getEntityById = {
 
 export namespace GetEventById {
 	export type PathParams = {
-		id: Entity["id"];
+		id: Event["id"];
 	};
 	export type Params = PathParams;
-	export type Response = PaginatedResponse<Entity>;
+	export type Response = Event;
 }
 
 export const getEventById = {
@@ -119,14 +118,6 @@ export namespace SearchEntities {
 		 */
 		diedAfter?: IsoDateString;
 		/**
-		 * Filter by related place labels.
-		 */
-		relatedPlace?: string;
-		/**
-		 * Filter by related places.
-		 */
-		relatedPlaces_id?: Array<Place["id"]>;
-		/**
 		 * Limit query to source datasets.
 		 */
 		datasets?: Array<Dataset["id"]>;
@@ -166,7 +157,7 @@ export namespace SearchEvents {
 		q?: string;
 	}>;
 	export type Params = SearchParams;
-	export type Response = PaginatedResponse<EntityEvent>;
+	export type Response = PaginatedResponse<Event>;
 }
 
 export const searchEvents = {
@@ -201,14 +192,18 @@ export namespace SearchOccupations {
 		 * Filter by label in the occupations vocabulary.
 		 */
 		q?: string;
+		/**
+		 * Limit query to source datasets.
+		 */
+		datasets?: Array<Dataset["id"]>;
 	}>;
 	export type Params = SearchParams;
-	export type Response = PaginatedResponse<OccupationWithRelations>;
+	export type Response = PaginatedResponse<VocabularyEntry>;
 }
 
 export const searchOccupations = {
 	pathname(): string {
-		return "/v1/api/vocabularies/occupations/search";
+		return "/v2/api/vocabularies/occupations/search";
 	},
 	searchParams(params: SearchOccupations.SearchParams): SearchOccupations.SearchParams {
 		return params;
@@ -226,6 +221,178 @@ export const searchOccupations = {
 	request(params: SearchOccupations.Params): Promise<SearchOccupations.Response> {
 		const url = searchOccupations.url(params);
 		const options = searchOccupations.options();
+		return request(url, options);
+	},
+};
+
+//
+
+export namespace GetOccupationById {
+	export type PathParams = {
+		id: VocabularyEntry["id"];
+	};
+	export type Params = PathParams;
+	export type Response = VocabularyEntry;
+}
+
+export const getOccupationById = {
+	pathname(params: GetOccupationById.Params): string {
+		return `/v2/api/vocabularies/occupations/${params.id}`;
+	},
+	url(params: GetOccupationById.Params): URL {
+		const url = createApiUrl({
+			pathname: getOccupationById.pathname(params),
+		});
+		return url;
+	},
+	options(): RequestOptions {
+		return { responseType: "json" };
+	},
+	request(params: GetOccupationById.Params): Promise<GetOccupationById.Response> {
+		const url = getOccupationById.url(params);
+		const options = getOccupationById.options();
+		return request(url, options);
+	},
+};
+
+//
+
+export namespace SearchEntityEventRoles {
+	export type SearchParams = PaginatedRequest<{
+		/**
+		 * Filter by label in the occupations vocabulary.
+		 */
+		q?: string;
+		/**
+		 * Limit query to source datasets.
+		 */
+		datasets?: Array<Dataset["id"]>;
+	}>;
+	export type Params = SearchParams;
+	export type Response = PaginatedResponse<VocabularyEntry>;
+}
+
+export const searchEntityEventRoles = {
+	pathname(): string {
+		return "/v2/api/vocabularies/role/search";
+	},
+	searchParams(params: SearchEntityEventRoles.SearchParams): SearchEntityEventRoles.SearchParams {
+		return params;
+	},
+	url(params: SearchEntityEventRoles.Params): URL {
+		const url = createApiUrl({
+			pathname: searchEntityEventRoles.pathname(),
+			searchParams: searchEntityEventRoles.searchParams(params),
+		});
+		return url;
+	},
+	options(): RequestOptions {
+		return { responseType: "json" };
+	},
+	request(params: SearchEntityEventRoles.Params): Promise<SearchEntityEventRoles.Response> {
+		const url = searchEntityEventRoles.url(params);
+		const options = searchEntityEventRoles.options();
+		return request(url, options);
+	},
+};
+
+//
+
+export namespace GetEntityEventRoleById {
+	export type PathParams = {
+		id: VocabularyEntry["id"];
+	};
+	export type Params = PathParams;
+	export type Response = VocabularyEntry;
+}
+
+export const getEntityEventRoleById = {
+	pathname(params: GetEntityEventRoleById.Params): string {
+		return `/v2/api/vocabularies/occupations/${params.id}`;
+	},
+	url(params: GetEntityEventRoleById.Params): URL {
+		const url = createApiUrl({
+			pathname: getEntityEventRoleById.pathname(params),
+		});
+		return url;
+	},
+	options(): RequestOptions {
+		return { responseType: "json" };
+	},
+	request(params: GetEntityEventRoleById.Params): Promise<GetEntityEventRoleById.Response> {
+		const url = getEntityEventRoleById.url(params);
+		const options = getEntityEventRoleById.options();
+		return request(url, options);
+	},
+};
+
+//
+
+export namespace SearchEventKinds {
+	export type SearchParams = PaginatedRequest<{
+		/**
+		 * Filter by label in the occupations vocabulary.
+		 */
+		q?: string;
+		/**
+		 * Limit query to source datasets.
+		 */
+		datasets?: Array<Dataset["id"]>;
+	}>;
+	export type Params = SearchParams;
+	export type Response = PaginatedResponse<VocabularyEntry>;
+}
+
+export const searchEventKinds = {
+	pathname(): string {
+		return "/v2/api/vocabularies/event_kind/search";
+	},
+	searchParams(params: SearchEventKinds.SearchParams): SearchEventKinds.SearchParams {
+		return params;
+	},
+	url(params: SearchEventKinds.Params): URL {
+		const url = createApiUrl({
+			pathname: searchEventKinds.pathname(),
+			searchParams: searchEventKinds.searchParams(params),
+		});
+		return url;
+	},
+	options(): RequestOptions {
+		return { responseType: "json" };
+	},
+	request(params: SearchEventKinds.Params): Promise<SearchEventKinds.Response> {
+		const url = searchEventKinds.url(params);
+		const options = searchEventKinds.options();
+		return request(url, options);
+	},
+};
+
+//
+
+export namespace GetEventKindById {
+	export type PathParams = {
+		id: VocabularyEntry["id"];
+	};
+	export type Params = PathParams;
+	export type Response = VocabularyEntry;
+}
+
+export const getEventKindById = {
+	pathname(params: GetEventKindById.Params): string {
+		return `/v2/api/vocabularies/occupations/${params.id}`;
+	},
+	url(params: GetEventKindById.Params): URL {
+		const url = createApiUrl({
+			pathname: getEventKindById.pathname(params),
+		});
+		return url;
+	},
+	options(): RequestOptions {
+		return { responseType: "json" };
+	},
+	request(params: GetEventKindById.Params): Promise<GetEventKindById.Response> {
+		const url = getEventKindById.url(params);
+		const options = getEventKindById.options();
 		return request(url, options);
 	},
 };
@@ -271,14 +438,6 @@ export namespace BirthStatisticsSearch {
 		 */
 		diedAfter?: IsoDateString;
 		/**
-		 * Filter by related place labels.
-		 */
-		relatedPlace?: string;
-		/**
-		 * Filter by related places.
-		 */
-		relatedPlaces_id?: Array<Place["id"]>;
-		/**
 		 * Limit query to source datasets.
 		 */
 		datasets?: Array<Dataset["id"]>;
@@ -297,7 +456,7 @@ export namespace BirthStatisticsSearch {
 
 export const searchBirthStatistics = {
 	pathname(): string {
-		return "/v1/api/statistics/birth/search";
+		return "/v2/api/statistics/birth/search";
 	},
 	searchParams(params: BirthStatisticsSearch.SearchParams): BirthStatisticsSearch.SearchParams {
 		return params;
@@ -360,14 +519,6 @@ export namespace DeathStatisticsSearch {
 		 */
 		diedAfter?: IsoDateString;
 		/**
-		 * Filter by related place labels.
-		 */
-		relatedPlace?: string;
-		/**
-		 * Filter by related places.
-		 */
-		relatedPlaces_id?: Array<Place["id"]>;
-		/**
 		 * Limit query to source datasets.
 		 */
 		datasets?: Array<Dataset["id"]>;
@@ -386,7 +537,7 @@ export namespace DeathStatisticsSearch {
 
 export const searchDeathStatistics = {
 	pathname(): string {
-		return "/v1/api/statistics/death/search";
+		return "/v2/api/statistics/death/search";
 	},
 	searchParams(params: DeathStatisticsSearch.SearchParams): DeathStatisticsSearch.SearchParams {
 		return params;
@@ -449,14 +600,6 @@ export namespace OccupationStatisticsSearch {
 		 */
 		diedAfter?: IsoDateString;
 		/**
-		 * Filter by related place labels.
-		 */
-		relatedPlace?: string;
-		/**
-		 * Filter by related places.
-		 */
-		relatedPlaces_id?: Array<Place["id"]>;
-		/**
 		 * Limit query to source datasets.
 		 */
 		datasets?: Array<Dataset["id"]>;
@@ -469,7 +612,7 @@ export namespace OccupationStatisticsSearch {
 
 export const searchOccupationStatistics = {
 	pathname(): string {
-		return "/v1/api/statistics/occupations/search";
+		return "/v2/api/statistics/occupations/search";
 	},
 	searchParams(
 		params: OccupationStatisticsSearch.SearchParams,

@@ -2,7 +2,7 @@
 // eslint-disable-next-line n/no-missing-import
 import type { Geometry } from "geojson";
 
-import type { InternationalizedLabel, IsoDateString, UriString, UrlString } from "./types.js";
+import type { InternationalizedLabel, IsoDateString, UrlString } from "./types.js";
 
 export interface Dataset {
 	id:
@@ -13,7 +13,7 @@ export interface Dataset {
 }
 
 export interface Gender {
-	id: UriString;
+	id: string;
 	label: InternationalizedLabel;
 }
 
@@ -41,14 +41,16 @@ export interface MediaResource {
 }
 
 export interface Occupation {
-	id: UriString;
+	id: string;
 	label: InternationalizedLabel;
 }
 
-export interface OccupationWithRelations extends Occupation {
-	relations?: Array<{
-		kind: "broader" | "narrower" | "same-as";
-		occupation: Occupation;
+export interface VocabularyEntry {
+	id: string;
+	label: InternationalizedLabel;
+	related?: Array<{
+		relation_type: "broader" | "narrower" | "same-as";
+		related_vocabulary: VocabularyEntry["id"];
 	}>;
 }
 
@@ -62,45 +64,44 @@ export interface Source {
 }
 
 export interface EntityRelationRole {
-	id: UriString;
+	id: string;
 	label: InternationalizedLabel;
 }
 
-export interface EntityEventKind {
-	id: UriString;
+export interface EventKind {
+	id: string;
 	label: InternationalizedLabel;
 }
 
 export interface EntityEventRelation {
 	id: string;
 	label: InternationalizedLabel;
-	description?: string;
+	// description?: string;
 	entity: Entity["id"];
 	role?: EntityRelationRole["id"];
-	source?: Source;
+	// source?: Source;
 }
 
-export interface EntityEvent {
+export interface Event {
 	id: string;
 	label: InternationalizedLabel;
-	description?: string;
-	kind?: EntityEventKind["id"];
-	source?: Source;
+	// description?: string;
+	// kind?: EntityEventKind["id"];
+	// source?: Source;
 	startDate?: IsoDateString;
 	endDate?: IsoDateString;
-	place?: Place["id"];
 	relations: Array<EntityEventRelation>;
 }
 
 interface EntityBase {
-	id: UriString;
+	id: string;
 	label: InternationalizedLabel;
-	alternativeLabels?: Array<InternationalizedLabel>;
-	source?: Source;
-	linkedIds?: Array<{ id: string; provider: { label: string; baseUrl: UrlString } }>;
 	description?: string;
-	media?: Array<MediaResource>;
-	events?: Array<EntityEvent["id"]>;
+	alternativeLabels?: Array<InternationalizedLabel>;
+	// source?: Source;
+	// linkedIds?: Array<{ id: string; provider: { label: string; baseUrl: UrlString } }>;
+	// media?: Array<MediaResource>;
+	events?: Array<Event["id"]>;
 }
 
 export interface CulturalHeritageObject extends EntityBase {
