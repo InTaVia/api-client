@@ -37,6 +37,44 @@ export const getEntityById = {
 
 //
 
+export namespace RetrieveEntitiesByIds {
+	export type SearchParams = PaginatedRequest<never>;
+	export type Params = SearchParams;
+	export type RequestBody = {
+		ids: Array<Entity["id"]>;
+	};
+	export type Response = PaginatedResponse<Entity>;
+}
+
+export const retrieveEntitiesByIds = {
+	pathname(): string {
+		return "/v2/api/entities/retrieve";
+	},
+	searchParams(params: RetrieveEntitiesByIds.SearchParams): RetrieveEntitiesByIds.SearchParams {
+		return params;
+	},
+	url(params: RetrieveEntitiesByIds.Params): URL {
+		const url = createApiUrl({
+			pathname: retrieveEntitiesByIds.pathname(),
+			searchParams: retrieveEntitiesByIds.searchParams(params),
+		});
+		return url;
+	},
+	options(data: RetrieveEntitiesByIds.RequestBody): RequestOptions {
+		return { json: data, method: "post", responseType: "json" };
+	},
+	request(
+		data: RetrieveEntitiesByIds.RequestBody,
+		params: RetrieveEntitiesByIds.Params,
+	): Promise<RetrieveEntitiesByIds.Response> {
+		const url = retrieveEntitiesByIds.url(params);
+		const options = retrieveEntitiesByIds.options(data);
+		return request(url, options);
+	},
+};
+
+//
+
 export namespace GetEventById {
 	export type PathParams = {
 		id: Event["id"];
@@ -61,6 +99,44 @@ export const getEventById = {
 	request(params: GetEventById.Params): Promise<GetEventById.Response> {
 		const url = getEventById.url(params);
 		const options = getEventById.options();
+		return request(url, options);
+	},
+};
+
+//
+
+export namespace RetrieveEventsByIds {
+	export type SearchParams = PaginatedRequest<never>;
+	export type Params = SearchParams;
+	export type RequestBody = {
+		ids: Array<Event["id"]>;
+	};
+	export type Response = PaginatedResponse<Event>;
+}
+
+export const retrieveEventsByIds = {
+	pathname(): string {
+		return "/v2/api/events/retrieve";
+	},
+	searchParams(params: RetrieveEventsByIds.SearchParams): RetrieveEventsByIds.SearchParams {
+		return params;
+	},
+	url(params: RetrieveEventsByIds.Params): URL {
+		const url = createApiUrl({
+			pathname: retrieveEventsByIds.pathname(),
+			searchParams: retrieveEventsByIds.searchParams(params),
+		});
+		return url;
+	},
+	options(data: RetrieveEventsByIds.RequestBody): RequestOptions {
+		return { json: data, method: "post", responseType: "json" };
+	},
+	request(
+		data: RetrieveEventsByIds.RequestBody,
+		params: RetrieveEventsByIds.Params,
+	): Promise<RetrieveEventsByIds.Response> {
+		const url = retrieveEventsByIds.url(params);
+		const options = retrieveEventsByIds.options(data);
 		return request(url, options);
 	},
 };
@@ -249,6 +325,46 @@ export const getOccupationById = {
 
 //
 
+export namespace RetrieveOccupationsByIds {
+	export type SearchParams = PaginatedRequest<never>;
+	export type Params = SearchParams;
+	export type RequestBody = {
+		ids: Array<VocabularyEntry["id"]>;
+	};
+	export type Response = PaginatedResponse<VocabularyEntry>;
+}
+
+export const retrieveOccupationsByIds = {
+	pathname(): string {
+		return "/v2/api/vocabularies/occupations/retrieve";
+	},
+	searchParams(
+		params: RetrieveOccupationsByIds.SearchParams,
+	): RetrieveOccupationsByIds.SearchParams {
+		return params;
+	},
+	url(params: RetrieveOccupationsByIds.Params): URL {
+		const url = createApiUrl({
+			pathname: retrieveOccupationsByIds.pathname(),
+			searchParams: retrieveOccupationsByIds.searchParams(params),
+		});
+		return url;
+	},
+	options(data: RetrieveOccupationsByIds.RequestBody): RequestOptions {
+		return { json: data, method: "post", responseType: "json" };
+	},
+	request(
+		data: RetrieveOccupationsByIds.RequestBody,
+		params: RetrieveOccupationsByIds.Params,
+	): Promise<RetrieveOccupationsByIds.Response> {
+		const url = retrieveOccupationsByIds.url(params);
+		const options = retrieveOccupationsByIds.options(data);
+		return request(url, options);
+	},
+};
+
+//
+
 export namespace SearchRelationRoles {
 	export type SearchParams = PaginatedRequest<{
 		/**
@@ -320,6 +436,46 @@ export const getRelationRoleById = {
 
 //
 
+export namespace RetrieveRelationRolesByIds {
+	export type SearchParams = PaginatedRequest<never>;
+	export type Params = SearchParams;
+	export type RequestBody = {
+		ids: Array<VocabularyEntry["id"]>;
+	};
+	export type Response = PaginatedResponse<VocabularyEntry>;
+}
+
+export const retrieveRelationRolesByIds = {
+	pathname(): string {
+		return "/v2/api/vocabularies/role/retrieve";
+	},
+	searchParams(
+		params: RetrieveRelationRolesByIds.SearchParams,
+	): RetrieveRelationRolesByIds.SearchParams {
+		return params;
+	},
+	url(params: RetrieveRelationRolesByIds.Params): URL {
+		const url = createApiUrl({
+			pathname: retrieveRelationRolesByIds.pathname(),
+			searchParams: retrieveRelationRolesByIds.searchParams(params),
+		});
+		return url;
+	},
+	options(data: RetrieveRelationRolesByIds.RequestBody): RequestOptions {
+		return { json: data, method: "post", responseType: "json" };
+	},
+	request(
+		data: RetrieveRelationRolesByIds.RequestBody,
+		params: RetrieveRelationRolesByIds.Params,
+	): Promise<RetrieveRelationRolesByIds.Response> {
+		const url = retrieveRelationRolesByIds.url(params);
+		const options = retrieveRelationRolesByIds.options(data);
+		return request(url, options);
+	},
+};
+
+//
+
 export namespace SearchEventKinds {
 	export type SearchParams = PaginatedRequest<{
 		/**
@@ -385,6 +541,44 @@ export const getEventKindById = {
 	request(params: GetEventKindById.Params): Promise<GetEventKindById.Response> {
 		const url = getEventKindById.url(params);
 		const options = getEventKindById.options();
+		return request(url, options);
+	},
+};
+
+//
+
+export namespace RetrieveEventKindsByIds {
+	export type SearchParams = PaginatedRequest<never>;
+	export type Params = SearchParams;
+	export type RequestBody = {
+		ids: Array<VocabularyEntry["id"]>;
+	};
+	export type Response = PaginatedResponse<VocabularyEntry>;
+}
+
+export const retrieveEventKindsByIds = {
+	pathname(): string {
+		return "/v2/api/vocabularies/event_kind/retrieve";
+	},
+	searchParams(params: RetrieveEventKindsByIds.SearchParams): RetrieveEventKindsByIds.SearchParams {
+		return params;
+	},
+	url(params: RetrieveEventKindsByIds.Params): URL {
+		const url = createApiUrl({
+			pathname: retrieveEventKindsByIds.pathname(),
+			searchParams: retrieveEventKindsByIds.searchParams(params),
+		});
+		return url;
+	},
+	options(data: RetrieveEventKindsByIds.RequestBody): RequestOptions {
+		return { json: data, method: "post", responseType: "json" };
+	},
+	request(
+		data: RetrieveEventKindsByIds.RequestBody,
+		params: RetrieveEventKindsByIds.Params,
+	): Promise<RetrieveEventKindsByIds.Response> {
+		const url = retrieveEventKindsByIds.url(params);
+		const options = retrieveEventKindsByIds.options(data);
 		return request(url, options);
 	},
 };

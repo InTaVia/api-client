@@ -75,6 +75,25 @@ const vocabularyEntry = z.object({
 		.optional(),
 });
 
+export const entityRelationRole = z.object({
+	id: z.string(),
+	label: internationalizedLabel,
+});
+
+export const eventEntityRelation = z.object({
+	// description: z.string().optional(),
+	entity: z.string() /** entity.shape.id */,
+	role: entityRelationRole.shape.id,
+	// source: source.optional(),
+});
+
+export const entityEventRelation = z.object({
+	// description: z.string().optional(),
+	event: z.string() /** event.shape.id */,
+	role: entityRelationRole.shape.id,
+	// source: source.optional(),
+});
+
 const entityBase = z.object({
 	id: z.string(),
 	label: internationalizedLabel,
@@ -95,7 +114,7 @@ const entityBase = z.object({
 		.optional(),
 	// description: z.string().optional(),
 	// media: z.array(mediaResource).optional(),
-	events: z.array(z.string() /** entityEvent.shape.id */).optional(),
+	relations: z.array(entityEventRelation).optional(),
 });
 
 export const culturalHeritageObject = entityBase.extend({
@@ -114,8 +133,8 @@ export const historicalEvent = entityBase.extend({
 
 export const person = entityBase.extend({
 	kind: z.literal("person"),
-	// gender: gender.optional(),
-	// occupations: z.array(vocabularyEntry.shape.id).optional(),
+	gender: gender.optional(),
+	occupations: z.array(vocabularyEntry.shape.id).optional(),
 });
 
 export const place = entityBase.extend({
@@ -140,34 +159,20 @@ export const entityKind = z.union([
 	place.shape.kind,
 ]);
 
-export const entityRelationRole = z.object({
+export const eventKind = z.object({
 	id: z.string(),
 	label: internationalizedLabel,
 });
 
-export const entityEventKind = z.object({
-	id: z.string(),
-	label: internationalizedLabel,
-});
-
-export const entityEventRelation = z.object({
-	// id: z.string(),
-	label: internationalizedLabel,
-	// description: z.string().optional(),
-	entity: z.string() /** entity.shape.id */,
-	role: entityRelationRole.shape.id.optional(),
-	// source: source.optional(),
-});
-
-export const entityEvent = z.object({
+export const event = z.object({
 	id: z.string(),
 	label: internationalizedLabel,
 	// description: z.string().optional(),
-	kind: entityEventKind.shape.id.optional(),
+	kind: eventKind.shape.id,
 	// source: source.optional(),
 	startDate: isoDateString.optional(),
 	endDate: isoDateString.optional(),
-	relations: z.array(entityEventRelation).optional(),
+	relations: z.array(eventEntityRelation).optional(),
 });
 
 //
@@ -229,10 +234,10 @@ export const getEntityByIdResponse = entity;
 //
 
 export const getEntityEventByIdPathParams = z.object({
-	id: entityEvent.shape.id,
+	id: event.shape.id,
 });
 
-export const getEntityEventByIdResponse = entityEvent;
+export const getEntityEventByIdResponse = event;
 
 //
 
@@ -267,7 +272,7 @@ export const searchEventsSearchParams = paginatedRequest.merge(
 
 export const searchEventsResponse = paginatedResponse.merge(
 	z.object({
-		results: z.array(entityEvent),
+		results: z.array(event),
 	}),
 );
 

@@ -68,13 +68,17 @@ export interface EventKind {
 	label: InternationalizedLabel;
 }
 
-export interface EntityEventRelation {
-	// id: string;
-	label: InternationalizedLabel;
+export interface EventEntityRelation {
 	// description?: string;
 	entity: Entity["id"];
-	// FIXME:
-	role?: EntityRelationRole["id"];
+	role: EntityRelationRole["id"];
+	// source?: Source;
+}
+
+export interface EntityEventRelation {
+	// description?: string;
+	event: Event["id"];
+	role: EntityRelationRole["id"];
 	// source?: Source;
 }
 
@@ -82,11 +86,11 @@ export interface Event {
 	id: string;
 	label: InternationalizedLabel;
 	// description?: string;
-	kind?: EventKind["id"];
+	kind: EventKind["id"];
 	// source?: Source;
 	startDate?: IsoDateString;
 	endDate?: IsoDateString;
-	relations: Array<EntityEventRelation>;
+	relations: Array<EventEntityRelation>;
 }
 
 interface EntityBase {
@@ -97,7 +101,7 @@ interface EntityBase {
 	// source?: Source;
 	linkedIds?: Array<{ id: string; provider?: { label: string; baseUrl: UrlString } }>;
 	// media?: Array<MediaResource>;
-	events?: Array<Event["id"]>;
+	relations: Array<EntityEventRelation>;
 }
 
 export interface CulturalHeritageObject extends EntityBase {
@@ -116,10 +120,8 @@ export interface HistoricalEvent extends EntityBase {
 
 export interface Person extends EntityBase {
 	kind: "person";
-	// FIXME:
-	// gender?: Gender;
-	// FIXME:
-	// occupations?: Array<VocabularyEntry>;
+	gender?: Gender;
+	occupations?: Array<VocabularyEntry["id"]>;
 }
 
 export interface Place extends EntityBase {
