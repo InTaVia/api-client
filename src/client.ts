@@ -249,7 +249,7 @@ export const getOccupationById = {
 
 //
 
-export namespace SearchEntityEventRoles {
+export namespace SearchRelationRoles {
 	export type SearchParams = PaginatedRequest<{
 		/**
 		 * Filter by label in the occupations vocabulary.
@@ -264,33 +264,33 @@ export namespace SearchEntityEventRoles {
 	export type Response = PaginatedResponse<VocabularyEntry>;
 }
 
-export const searchEntityEventRoles = {
+export const searchRelationRoles = {
 	pathname(): string {
 		return "/v2/api/vocabularies/role/search";
 	},
-	searchParams(params: SearchEntityEventRoles.SearchParams): SearchEntityEventRoles.SearchParams {
+	searchParams(params: SearchRelationRoles.SearchParams): SearchRelationRoles.SearchParams {
 		return params;
 	},
-	url(params: SearchEntityEventRoles.Params): URL {
+	url(params: SearchRelationRoles.Params): URL {
 		const url = createApiUrl({
-			pathname: searchEntityEventRoles.pathname(),
-			searchParams: searchEntityEventRoles.searchParams(params),
+			pathname: searchRelationRoles.pathname(),
+			searchParams: searchRelationRoles.searchParams(params),
 		});
 		return url;
 	},
 	options(): RequestOptions {
 		return { responseType: "json" };
 	},
-	request(params: SearchEntityEventRoles.Params): Promise<SearchEntityEventRoles.Response> {
-		const url = searchEntityEventRoles.url(params);
-		const options = searchEntityEventRoles.options();
+	request(params: SearchRelationRoles.Params): Promise<SearchRelationRoles.Response> {
+		const url = searchRelationRoles.url(params);
+		const options = searchRelationRoles.options();
 		return request(url, options);
 	},
 };
 
 //
 
-export namespace GetEntityEventRoleById {
+export namespace GetRelationRoleById {
 	export type PathParams = {
 		id: VocabularyEntry["id"];
 	};
@@ -298,22 +298,22 @@ export namespace GetEntityEventRoleById {
 	export type Response = VocabularyEntry;
 }
 
-export const getEntityEventRoleById = {
-	pathname(params: GetEntityEventRoleById.Params): string {
-		return `/v2/api/vocabularies/occupations/${params.id}`;
+export const getRelationRoleById = {
+	pathname(params: GetRelationRoleById.Params): string {
+		return `/v2/api/vocabularies/role/${params.id}`;
 	},
-	url(params: GetEntityEventRoleById.Params): URL {
+	url(params: GetRelationRoleById.Params): URL {
 		const url = createApiUrl({
-			pathname: getEntityEventRoleById.pathname(params),
+			pathname: getRelationRoleById.pathname(params),
 		});
 		return url;
 	},
 	options(): RequestOptions {
 		return { responseType: "json" };
 	},
-	request(params: GetEntityEventRoleById.Params): Promise<GetEntityEventRoleById.Response> {
-		const url = getEntityEventRoleById.url(params);
-		const options = getEntityEventRoleById.options();
+	request(params: GetRelationRoleById.Params): Promise<GetRelationRoleById.Response> {
+		const url = getRelationRoleById.url(params);
+		const options = getRelationRoleById.options();
 		return request(url, options);
 	},
 };
@@ -371,7 +371,7 @@ export namespace GetEventKindById {
 
 export const getEventKindById = {
 	pathname(params: GetEventKindById.Params): string {
-		return `/v2/api/vocabularies/occupations/${params.id}`;
+		return `/v2/api/vocabularies/event_kind/${params.id}`;
 	},
 	url(params: GetEventKindById.Params): URL {
 		const url = createApiUrl({
