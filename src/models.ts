@@ -40,11 +40,6 @@ export interface MediaResource {
 	description?: string;
 }
 
-export interface Occupation {
-	id: string;
-	label: InternationalizedLabel;
-}
-
 export interface VocabularyEntry {
 	id: string;
 	label: InternationalizedLabel;
@@ -74,10 +69,11 @@ export interface EventKind {
 }
 
 export interface EntityEventRelation {
-	id: string;
+	// id: string;
 	label: InternationalizedLabel;
 	// description?: string;
 	entity: Entity["id"];
+	// FIXME:
 	role?: EntityRelationRole["id"];
 	// source?: Source;
 }
@@ -86,7 +82,7 @@ export interface Event {
 	id: string;
 	label: InternationalizedLabel;
 	// description?: string;
-	// kind?: EntityEventKind["id"];
+	kind?: EventKind["id"];
 	// source?: Source;
 	startDate?: IsoDateString;
 	endDate?: IsoDateString;
@@ -96,10 +92,10 @@ export interface Event {
 interface EntityBase {
 	id: string;
 	label: InternationalizedLabel;
-	description?: string;
+	// description?: string;
 	alternativeLabels?: Array<InternationalizedLabel>;
 	// source?: Source;
-	// linkedIds?: Array<{ id: string; provider: { label: string; baseUrl: UrlString } }>;
+	linkedIds?: Array<{ id: string; provider?: { label: string; baseUrl: UrlString } }>;
 	// media?: Array<MediaResource>;
 	events?: Array<Event["id"]>;
 }
@@ -120,8 +116,10 @@ export interface HistoricalEvent extends EntityBase {
 
 export interface Person extends EntityBase {
 	kind: "person";
-	gender?: Gender;
-	occupations?: Array<Occupation>;
+	// FIXME:
+	// gender?: Gender;
+	// FIXME:
+	// occupations?: Array<VocabularyEntry>;
 }
 
 export interface Place extends EntityBase {

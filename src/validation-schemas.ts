@@ -40,39 +40,36 @@ const historicalEventType = z.object({
 	label: internationalizedLabel,
 });
 
-const mediaKind = z.object({
-	id: z.string(),
-	label: z.string(),
-});
-
 const placeType = z.object({
 	id: z.string(),
 	label: internationalizedLabel,
 });
 
-const source = z.object({
-	citation: z.string(),
-});
+// const mediaKind = z.object({
+// 	id: z.string(),
+// 	label: z.string(),
+// });
 
-const mediaResource = z.object({
-	id: z.string(),
-	attribution: z.string(),
-	url: urlString,
-	kind: mediaKind,
-	description: z.string().optional(),
-});
+// const source = z.object({
+// 	citation: z.string(),
+// });
 
-const occupation = z.object({
+// const mediaResource = z.object({
+// 	id: z.string(),
+// 	attribution: z.string(),
+// 	url: urlString,
+// 	kind: mediaKind,
+// 	description: z.string().optional(),
+// });
+
+const vocabularyEntry = z.object({
 	id: z.string(),
 	label: internationalizedLabel,
-});
-
-const occupationWithRelations = occupation.extend({
-	relations: z
+	related: z
 		.array(
 			z.object({
-				kind: z.enum(["broader", "narrower", "same-as"]),
-				occupation: occupation,
+				relation_type: z.enum(["broader", "narrower", "same-as"]),
+				related_vocabulary: z.string() /** vocabularyEntry.shape.id  */,
 			}),
 		)
 		.optional(),
@@ -82,20 +79,22 @@ const entityBase = z.object({
 	id: z.string(),
 	label: internationalizedLabel,
 	alternativeLabels: z.array(internationalizedLabel).optional(),
-	source: source.optional(),
+	// source: source.optional(),
 	linkedIds: z
 		.array(
 			z.object({
 				id: z.string(),
-				provider: z.object({
-					label: z.string(),
-					baseUrl: urlString,
-				}),
+				provider: z
+					.object({
+						label: z.string(),
+						baseUrl: urlString,
+					})
+					.optional(),
 			}),
 		)
 		.optional(),
-	description: z.string().optional(),
-	media: z.array(mediaResource).optional(),
+	// description: z.string().optional(),
+	// media: z.array(mediaResource).optional(),
 	events: z.array(z.string() /** entityEvent.shape.id */).optional(),
 });
 
@@ -115,8 +114,8 @@ export const historicalEvent = entityBase.extend({
 
 export const person = entityBase.extend({
 	kind: z.literal("person"),
-	gender: gender.optional(),
-	occupations: z.array(occupation).optional(),
+	// gender: gender.optional(),
+	// occupations: z.array(vocabularyEntry.shape.id).optional(),
 });
 
 export const place = entityBase.extend({
@@ -152,23 +151,22 @@ export const entityEventKind = z.object({
 });
 
 export const entityEventRelation = z.object({
-	id: z.string(),
+	// id: z.string(),
 	label: internationalizedLabel,
-	description: z.string().optional(),
-	entity,
-	role: entityRelationRole.optional(),
-	source: source.optional(),
+	// description: z.string().optional(),
+	entity: z.string() /** entity.shape.id */,
+	role: entityRelationRole.shape.id.optional(),
+	// source: source.optional(),
 });
 
 export const entityEvent = z.object({
 	id: z.string(),
 	label: internationalizedLabel,
-	description: z.string().optional(),
-	kind: entityEventKind.optional(),
-	source: source.optional(),
+	// description: z.string().optional(),
+	kind: entityEventKind.shape.id.optional(),
+	// source: source.optional(),
 	startDate: isoDateString.optional(),
 	endDate: isoDateString.optional(),
-	place: place.optional(),
 	relations: z.array(entityEventRelation).optional(),
 });
 
@@ -243,7 +241,7 @@ export const searchEntitiesSearchParams = paginatedRequest.merge(
 		q: z.string().optional(),
 		kind: z.array(entityKind).optional(),
 		occupation: z.string().optional(),
-		occupations_id: z.array(occupation.shape.id).optional(),
+		occupations_id: z.array(vocabularyEntry.shape.id).optional(),
 		gender: z.string().optional(),
 		gender_id: gender.shape.id.optional(),
 		bornBefore: isoDateString.optional(),
@@ -283,7 +281,7 @@ export const searchOccupationsSearchParams = paginatedRequest.merge(
 
 export const searchOccupationsResponse = paginatedResponse.merge(
 	z.object({
-		results: z.array(occupationWithRelations),
+		results: z.array(vocabularyEntry),
 	}),
 );
 
@@ -292,7 +290,7 @@ export const searchOccupationsResponse = paginatedResponse.merge(
 export const birthStatisticsSearchSearchParams = z.object({
 	q: z.string().optional(),
 	occupation: z.string().optional(),
-	occupations_id: z.array(occupation.shape.id).optional(),
+	occupations_id: z.array(vocabularyEntry.shape.id).optional(),
 	gender: z.string().optional(),
 	gender_id: gender.shape.id.optional(),
 	bornBefore: isoDateString.optional(),
@@ -313,7 +311,7 @@ export const birthStatisticsSearchResponse = z.object({
 export const deathStatisticsSearchSearchParams = z.object({
 	q: z.string().optional(),
 	occupation: z.string().optional(),
-	occupations_id: z.array(occupation.shape.id).optional(),
+	occupations_id: z.array(vocabularyEntry.shape.id).optional(),
 	gender: z.string().optional(),
 	gender_id: gender.shape.id.optional(),
 	bornBefore: isoDateString.optional(),
@@ -334,7 +332,7 @@ export const deathStatisticsSearchResponse = z.object({
 export const occupationsStatisticsSearchSearchParams = z.object({
 	q: z.string().optional(),
 	occupation: z.string().optional(),
-	occupations_id: z.array(occupation.shape.id).optional(),
+	occupations_id: z.array(vocabularyEntry.shape.id).optional(),
 	gender: z.string().optional(),
 	gender_id: gender.shape.id.optional(),
 	bornBefore: isoDateString.optional(),

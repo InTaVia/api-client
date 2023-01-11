@@ -4,15 +4,7 @@ import type { RequestOptions } from "@stefanprobst/request";
 import { request } from "@stefanprobst/request";
 
 import { createApiUrl } from "./lib.js";
-import type {
-	Dataset,
-	Entity,
-	EntityKind,
-	Event,
-	Gender,
-	Occupation,
-	VocabularyEntry,
-} from "./models.js";
+import type { Dataset, Entity, EntityKind, Event, Gender, VocabularyEntry } from "./models.js";
 import type { Bin, IsoDateString, PaginatedRequest, PaginatedResponse, RootNode } from "./types.js";
 
 export namespace GetEntityById {
@@ -92,7 +84,7 @@ export namespace SearchEntities {
 		/**
 		 * Filter persons by occupation id (uri).
 		 */
-		occupations_id?: Array<Occupation["id"]>;
+		occupations_id?: Array<VocabularyEntry["id"]>;
 		/**
 		 * Filter persons by gender label.
 		 */
@@ -412,7 +404,7 @@ export namespace BirthStatisticsSearch {
 		/**
 		 * Filter persons by occupation id (uri).
 		 */
-		occupations_id?: Array<Occupation["id"]>;
+		occupations_id?: Array<VocabularyEntry["id"]>;
 		/**
 		 * Filter persons by gender label.
 		 */
@@ -493,7 +485,7 @@ export namespace DeathStatisticsSearch {
 		/**
 		 * Filter persons by occupation id (uri).
 		 */
-		occupations_id?: Array<Occupation["id"]>;
+		occupations_id?: Array<VocabularyEntry["id"]>;
 		/**
 		 * Filter persons by gender label.
 		 */
@@ -574,7 +566,7 @@ export namespace OccupationStatisticsSearch {
 		/**
 		 * Filter persons by occupation id (uri).
 		 */
-		occupations_id?: Array<Occupation["id"]>;
+		occupations_id?: Array<VocabularyEntry["id"]>;
 		/**
 		 * Filter persons by gender label.
 		 */
@@ -606,7 +598,7 @@ export namespace OccupationStatisticsSearch {
 	};
 	export type Params = SearchParams;
 	export type Response = {
-		tree: RootNode<Occupation>;
+		tree: RootNode<VocabularyEntry>;
 	};
 }
 
