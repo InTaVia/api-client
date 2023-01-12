@@ -21,8 +21,8 @@ export async function getEntityById({
 
 //
 
-export async function setEvent(Event: Event): Promise<Event> {
-	return events.setItem(Event.id, Event);
+export async function setEvent(event: Event): Promise<Event> {
+	return events.setItem(event.id, event);
 }
 
 export async function getEventById({
