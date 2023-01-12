@@ -62,6 +62,7 @@ search.before(async () => {
 				id: `entity-${n}`,
 				label: { default: `Entity ${n}` },
 				kind: "person",
+				// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 				gender: genders[n % 3]!,
 				relations: [],
 			});
