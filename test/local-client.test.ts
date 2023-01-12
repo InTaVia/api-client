@@ -1,11 +1,109 @@
 import "fake-indexeddb/auto";
 
+import { faker } from "@faker-js/faker";
 import { range } from "@stefanprobst/range";
 import { suite, test } from "uvu";
 import * as assert from "uvu/assert";
 
-import { type Entity, type Event } from "../src/index.js";
+import {
+	type Entity,
+	type Event,
+	type Person,
+	type VocabularyEntry,
+	entityKinds,
+} from "../src/index.js";
 import * as client from "../src/local-client.js";
+
+const occupations = createOccupations(20);
+const events = Array<Event>();
+
+function createRandomOccupation(): VocabularyEntry {
+	return {
+		id: faker.datatype.uuid(),
+		label: {
+			default: faker.name.jobTitle(),
+		},
+	};
+}
+
+function createOccupations(n: number): Array<VocabularyEntry> {
+	const occupations = Array<VocabularyEntry>();
+	range(1, n).forEach(() => {
+		occupations.push(createRandomOccupation());
+	});
+	return occupations;
+}
+
+function createBirthEvent(name: string): Event {
+	const date = faker.date.birthdate().toISOString().slice(0, 10);
+	return {
+		id: faker.datatype.uuid(),
+		label: {
+			default: `birth of ${name}`,
+		},
+		kind: "birth-event",
+		startDate: date,
+		endDate: date,
+		// TODO: add relation to entity
+		relations: [],
+	};
+}
+
+function createDeathEvent(name: string): Event {
+	const date = faker.date.birthdate().toISOString().slice(0, 10);
+	return {
+		id: faker.datatype.uuid(),
+		label: {
+			default: `death of ${name}`,
+		},
+		kind: "death-event",
+		startDate: date,
+		endDate: date,
+		// TODO: add relation to entity
+		relations: [],
+	};
+}
+
+function createRandomPerson(): Person {
+	const gender = faker.name.sexType();
+
+	return {
+		id: faker.datatype.uuid(),
+		kind: "person",
+		label: {
+			default: faker.name.fullName({ sex: gender }),
+		},
+		gender: {
+			id: `gender-${gender}`,
+			label: {
+				default: gender,
+			},
+		},
+		occupations: faker.helpers.arrayElements(
+			occupations.map((occupation) => {
+				return occupation.id;
+			}),
+			faker.datatype.number(3),
+		),
+		// TODO: create birth and death events, add relations to person, and add event to global events array
+		relations: [],
+	};
+}
+
+function createRandomEntity(): Entity {
+	const kind = faker.helpers.arrayElement(entityKinds);
+
+	switch (kind) {
+		case "person":
+			return createRandomPerson();
+		// case "group":
+		// 	return createRandomGroup();
+		// case "place":
+		// 	return createRandomPlace();
+		default:
+			return createRandomPerson();
+	}
+}
 
 test("local client should set and get entity", async () => {
 	const payload: Entity = {
