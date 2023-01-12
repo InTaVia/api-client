@@ -164,7 +164,7 @@ export namespace SearchEntities {
 		/**
 		 * Filter persons by gender label.
 		 */
-		gender?: string;
+		gender?: Array<string>;
 		/**
 		 * Filter persons by gender id (uri).
 		 */
@@ -602,7 +602,7 @@ export namespace BirthStatisticsSearch {
 		/**
 		 * Filter persons by gender label.
 		 */
-		gender?: string;
+		gender?: Array<string>;
 		/**
 		 * Filter persons by gender id (uri).
 		 */
@@ -683,7 +683,7 @@ export namespace DeathStatisticsSearch {
 		/**
 		 * Filter persons by gender label.
 		 */
-		gender?: string;
+		gender?: Array<string>;
 		/**
 		 * Filter persons by gender id (uri).
 		 */
@@ -764,7 +764,7 @@ export namespace OccupationStatisticsSearch {
 		/**
 		 * Filter persons by gender label.
 		 */
-		gender?: string;
+		gender?: Array<string>;
 		/**
 		 * Filter persons by gender id (uri).
 		 */
