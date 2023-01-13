@@ -15,6 +15,7 @@ import {
 import * as client from "../src/local-client.js";
 
 const occupations = createOccupations(20);
+const entities = Array<Entity>();
 const events = Array<Event>();
 
 function createRandomOccupation(): VocabularyEntry {
@@ -34,44 +35,41 @@ function createOccupations(n: number): Array<VocabularyEntry> {
 	return occupations;
 }
 
-function createBirthEvent(name: string): Event {
+function createLifeEvent(entityId: string, entityName: string, kind: "birth" | "death"): Event {
 	const date = faker.date.birthdate().toISOString().slice(0, 10);
-	return {
-		id: faker.datatype.uuid(),
-		label: {
-			default: `birth of ${name}`,
-		},
-		kind: "birth-event",
-		startDate: date,
-		endDate: date,
-		// TODO: add relation to entity
-		relations: [],
-	};
-}
 
-function createDeathEvent(name: string): Event {
-	const date = faker.date.birthdate().toISOString().slice(0, 10);
-	return {
+	const event: Event = {
 		id: faker.datatype.uuid(),
 		label: {
-			default: `death of ${name}`,
+			default: `${kind} of ${entityName}`,
 		},
-		kind: "death-event",
+		kind: `${kind}-event`,
 		startDate: date,
 		endDate: date,
-		// TODO: add relation to entity
-		relations: [],
+		relations: [
+			{
+				role: `${kind === "birth" ? "born" : "deceased"} person`,
+				entity: entityId,
+			},
+		],
 	};
+
+	events.push(event);
+	return event;
 }
 
 function createRandomPerson(): Person {
+	const id = faker.datatype.uuid();
 	const gender = faker.name.sexType();
+	const name = faker.name.fullName({ sex: gender });
+	const birthEvent = createLifeEvent(id, name, "birth");
+	const deathEvent = createLifeEvent(id, name, "death");
 
 	return {
-		id: faker.datatype.uuid(),
+		id: id,
 		kind: "person",
 		label: {
-			default: faker.name.fullName({ sex: gender }),
+			default: name,
 		},
 		gender: {
 			id: `gender-${gender}`,
@@ -85,8 +83,16 @@ function createRandomPerson(): Person {
 			}),
 			faker.datatype.number(3),
 		),
-		// TODO: create birth and death events, add relations to person, and add event to global events array
-		relations: [],
+		relations: [
+			{
+				role: "born person",
+				event: birthEvent.id,
+			},
+			{
+				role: "deceased person",
+				event: deathEvent.id,
+			},
+		],
 	};
 }
 
@@ -105,13 +111,14 @@ function createRandomEntity(): Entity {
 	}
 }
 
+function createRandomEntitiesAndEvents() {
+	range(0, 99).forEach(() => {
+		entities.push(createRandomEntity());
+	});
+}
+
 test("local client should set and get entity", async () => {
-	const payload: Entity = {
-		id: "entity123",
-		kind: "person",
-		label: { default: "Entity 123" },
-		relations: [],
-	};
+	const payload: Entity = createRandomEntity();
 
 	const written = await client.setEntity(payload);
 	const read = await client.getEntityById({ id: payload.id });
@@ -139,40 +146,17 @@ const search = suite("local client search");
 
 // TODO: better db population for search tests
 search.before(async () => {
-	const genders = [
-		{
-			id: "gender-female",
-			label: { default: "female" },
-		},
-		{
-			id: "gender-male",
-			label: { default: "male" },
-		},
-		{
-			id: "gender-unknown",
-			label: { default: "unknown" },
-		},
-	];
+	createRandomEntitiesAndEvents();
 
-	for (const n of range(1, 100)) {
-		if (n % 2 === 0) {
-			await client.setEntity({
-				id: `entity-${n}`,
-				label: { default: `Entity ${n}` },
-				kind: "person",
-				// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-				gender: genders[n % 3]!,
-				relations: [],
-			});
-		} else {
-			await client.setEntity({
-				id: `entity-${n}`,
-				label: { default: `Entity ${n}` },
-				kind: "group",
-				relations: [],
-			});
-		}
-	}
+	// Store entities in db
+	entities.forEach(async (entity) => {
+		await client.setEntity(entity);
+	});
+
+	// Store events in db
+	events.forEach(async (event) => {
+		await client.setEvent(event);
+	});
 });
 
 search("local client should return entities filtered by label", async () => {
