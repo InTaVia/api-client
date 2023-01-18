@@ -96,7 +96,7 @@ export interface Event {
 interface EntityBase {
 	id: string;
 	label: InternationalizedLabel;
-	// description?: string;
+	description?: string;
 	alternativeLabels?: Array<InternationalizedLabel>;
 	// source?: Source;
 	linkedIds?: Array<{ id: string; provider?: { label: string; baseUrl: UrlString } }>;

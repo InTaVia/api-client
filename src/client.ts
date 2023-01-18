@@ -4,7 +4,16 @@ import type { RequestOptions } from "@stefanprobst/request";
 import { request } from "@stefanprobst/request";
 
 import { createApiUrl } from "./lib.js";
-import type { Dataset, Entity, EntityKind, Event, Gender, VocabularyEntry } from "./models.js";
+import type {
+	Dataset,
+	Entity,
+	EntityKind,
+	EntityRelationRole,
+	Event,
+	EventKind,
+	Gender,
+	VocabularyEntry,
+} from "./models.js";
 import type { Bin, IsoDateString, PaginatedRequest, PaginatedResponse, RootNode } from "./types.js";
 
 export namespace GetEntityById {
@@ -222,7 +231,38 @@ export const searchEntities = {
 
 export namespace SearchEvents {
 	export type SearchParams = PaginatedRequest<{
+		/**
+		 * Searches across labels of all events.
+		 */
 		q?: string;
+		/**
+		 * Searches labels of related entities.
+		 */
+		related_entities?: string;
+		/**
+		 * Searches related entities using IDs.
+		 */
+		related_entities_id?: Array<Entity["id"]>;
+		/**
+		 * Searches labels of roles.
+		 */
+		role?: string;
+		/**
+		 * Searches roles using IDs.
+		 */
+		role_id?: Array<EntityRelationRole["id"]>;
+		/**
+		 * Searches labels of event kinds.
+		 */
+		event_kind?: string;
+		/**
+		 * Searches event kinds using IDs.
+		 */
+		event_kind_id?: EventKind["id"];
+		/**
+		 * Limit query to source datasets.
+		 */
+		datasets?: Array<Dataset["id"]>;
 	}>;
 	export type Params = SearchParams;
 	export type Response = PaginatedResponse<Event>;
