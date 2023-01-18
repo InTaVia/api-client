@@ -1,5 +1,16 @@
 # @intavia/api-client
 
+## 0.1.7
+
+### Patch Changes
+
+- [`473b7e0`](https://github.com/InTaVia/api-client/commit/473b7e0162f91ae329caca4597046c71127c6e07)
+  Thanks [@stefanprobst](https://github.com/stefanprobst)! - add bulk retrieve by ids endpoints
+
+- [`473b7e0`](https://github.com/InTaVia/api-client/commit/473b7e0162f91ae329caca4597046c71127c6e07)
+  Thanks [@stefanprobst](https://github.com/stefanprobst)! - adjust entity relations to always
+  include role
+
 ## 0.1.6
 
 ### Patch Changes
