@@ -6,6 +6,5 @@
 		"outDir": "dist",
 		"esModuleInterop": true,
 		"moduleResolution": "Node"
-	},
-	"include": ["**/*.ts"]
+	}
 }
