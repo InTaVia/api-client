@@ -1,5 +1,16 @@
 # @intavia/api-client
 
+## 0.1.8
+
+### Patch Changes
+
+- [`41848cd`](https://github.com/InTaVia/api-client/commit/41848cd41d98eef6e9b8dc5c5fabb49fdd50b438)
+  Thanks [@stefanprobst](https://github.com/stefanprobst)! - add search params for event search
+  endpoint
+
+- [`909437d`](https://github.com/InTaVia/api-client/commit/909437dbc6d648a3626a2c52c94eb40df7f57cba)
+  Thanks [@stefanprobst](https://github.com/stefanprobst)! - correctly generate type definitions
+
 ## 0.1.7
 
 ### Patch Changes
