@@ -17,6 +17,11 @@ export interface Gender {
 	label: InternationalizedLabel;
 }
 
+export interface CulturalHeritageObjectType {
+	id: string;
+	label: InternationalizedLabel;
+}
+
 export interface GroupType {
 	id: string;
 	label: InternationalizedLabel;
@@ -106,6 +111,7 @@ interface EntityBase {
 
 export interface CulturalHeritageObject extends EntityBase {
 	kind: "cultural-heritage-object";
+	type?: CulturalHeritageObjectType;
 }
 
 export interface Group extends EntityBase {
