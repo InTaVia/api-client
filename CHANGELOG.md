@@ -1,5 +1,13 @@
 # @intavia/api-client
 
+## 0.1.9
+
+### Patch Changes
+
+- [`92b2464`](https://github.com/InTaVia/api-client/commit/92b2464a65b637235061dc13b441f13126d2c2c3)
+  Thanks [@stefanprobst](https://github.com/stefanprobst)! - add optional type field for cultural
+  heritage objects
+
 ## 0.1.8
 
 ### Patch Changes
