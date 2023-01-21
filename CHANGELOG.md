@@ -1,5 +1,13 @@
 # @intavia/api-client
 
+## 0.1.10
+
+### Patch Changes
+
+- [`4b1acbc`](https://github.com/InTaVia/api-client/commit/4b1acbc0abd484c4266368205a1895ef8ce8b245)
+  Thanks [@stefanprobst](https://github.com/stefanprobst)! - update optional fields in validation
+  schemata
+
 ## 0.1.9
 
 ### Patch Changes
