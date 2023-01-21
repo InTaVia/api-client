@@ -97,6 +97,7 @@ export const entityEventRelation = z.object({
 const entityBase = z.object({
 	id: z.string(),
 	label: internationalizedLabel,
+	description: z.string().optional(),
 	alternativeLabels: z.array(internationalizedLabel).optional(),
 	// source: source.optional(),
 	linkedIds: z
@@ -112,9 +113,8 @@ const entityBase = z.object({
 			}),
 		)
 		.optional(),
-	// description: z.string().optional(),
 	// media: z.array(mediaResource).optional(),
-	relations: z.array(entityEventRelation).optional(),
+	relations: z.array(entityEventRelation),
 });
 
 export const culturalHeritageObject = entityBase.extend({
@@ -140,7 +140,7 @@ export const person = entityBase.extend({
 export const place = entityBase.extend({
 	kind: z.literal("place"),
 	type: placeType.optional(),
-	geometry: geometry,
+	geometry: geometry.optional(),
 });
 
 export const entity = z.discriminatedUnion("kind", [
@@ -172,7 +172,7 @@ export const event = z.object({
 	// source: source.optional(),
 	startDate: isoDateString.optional(),
 	endDate: isoDateString.optional(),
-	relations: z.array(eventEntityRelation).optional(),
+	relations: z.array(eventEntityRelation),
 });
 
 //
