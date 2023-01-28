@@ -125,7 +125,7 @@ export namespace RetrieveEventsByIds {
 
 export const retrieveEventsByIds = {
 	pathname(): string {
-		return "/v2/api/events/retrieve";
+		return "/v2/api/event/retrieve";
 	},
 	searchParams(params: RetrieveEventsByIds.SearchParams): RetrieveEventsByIds.SearchParams {
 		return params;
