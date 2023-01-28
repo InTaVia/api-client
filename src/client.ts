@@ -270,7 +270,7 @@ export namespace SearchEvents {
 
 export const searchEvents = {
 	pathname(): string {
-		return "/v2/api/events/search";
+		return "/v2/api/event/search";
 	},
 	searchParams(params: SearchEvents.SearchParams): SearchEvents.SearchParams {
 		return params;
