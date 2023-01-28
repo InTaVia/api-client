@@ -1,5 +1,13 @@
 # @intavia/api-client
 
+## 0.1.11
+
+### Patch Changes
+
+- [`a9487b6`](https://github.com/InTaVia/api-client/commit/a9487b6de97c4159f2222a9c0629e8b2edf6db23)
+  Thanks [@stefanprobst](https://github.com/stefanprobst)! - use correct pathnames for event
+  endpoints
+
 ## 0.1.10
 
 ### Patch Changes
