@@ -861,3 +861,123 @@ export const searchOccupationStatistics = {
 		return request(url, options);
 	},
 };
+
+//
+
+export namespace RetrieveBirthStatistics {
+	export type SearchParams = PaginatedRequest<never>;
+	export type Params = SearchParams;
+	export type RequestBody = {
+		ids: Array<VocabularyEntry["id"]>;
+	};
+	export type Response = {
+		bins: Array<Bin<IsoDateString>>;
+	};
+}
+
+export const retrieveBirthStatisticsByIds = {
+	pathname(): string {
+		return "/v2/api/statistics/birth_dates/bulk";
+	},
+	searchParams(params: RetrieveBirthStatistics.SearchParams): RetrieveBirthStatistics.SearchParams {
+		return params;
+	},
+	url(params: RetrieveBirthStatistics.Params): URL {
+		const url = createApiUrl({
+			pathname: retrieveBirthStatisticsByIds.pathname(),
+			searchParams: retrieveBirthStatisticsByIds.searchParams(params),
+		});
+		return url;
+	},
+	options(data: RetrieveBirthStatistics.RequestBody): RequestOptions {
+		return { json: data, method: "post", responseType: "json" };
+	},
+	request(
+		data: RetrieveBirthStatistics.RequestBody,
+		params: RetrieveBirthStatistics.Params,
+	): Promise<RetrieveBirthStatistics.Response> {
+		const url = retrieveBirthStatisticsByIds.url(params);
+		const options = retrieveBirthStatisticsByIds.options(data);
+		return request(url, options);
+	},
+};
+
+//
+
+export namespace RetrieveDeathStatistics {
+	export type SearchParams = PaginatedRequest<never>;
+	export type Params = SearchParams;
+	export type RequestBody = {
+		ids: Array<VocabularyEntry["id"]>;
+	};
+	export type Response = {
+		bins: Array<Bin<IsoDateString>>;
+	};
+}
+
+export const retrieveDeathStatisticsByIds = {
+	pathname(): string {
+		return "/v2/api/statistics/death_dates/bulk";
+	},
+	searchParams(params: RetrieveDeathStatistics.SearchParams): RetrieveDeathStatistics.SearchParams {
+		return params;
+	},
+	url(params: RetrieveDeathStatistics.Params): URL {
+		const url = createApiUrl({
+			pathname: retrieveDeathStatisticsByIds.pathname(),
+			searchParams: retrieveDeathStatisticsByIds.searchParams(params),
+		});
+		return url;
+	},
+	options(data: RetrieveDeathStatistics.RequestBody): RequestOptions {
+		return { json: data, method: "post", responseType: "json" };
+	},
+	request(
+		data: RetrieveDeathStatistics.RequestBody,
+		params: RetrieveDeathStatistics.Params,
+	): Promise<RetrieveDeathStatistics.Response> {
+		const url = retrieveDeathStatisticsByIds.url(params);
+		const options = retrieveDeathStatisticsByIds.options(data);
+		return request(url, options);
+	},
+};
+
+//
+
+export namespace RetrieveOccupationStatistics {
+	export type SearchParams = PaginatedRequest<never>;
+	export type Params = SearchParams;
+	export type RequestBody = {
+		ids: Array<VocabularyEntry["id"]>;
+	};
+	export type Response = RootNode<VocabularyEntry>;
+}
+
+export const retrieveOccupationStatisticsByIds = {
+	pathname(): string {
+		return "/v2/api/statistics/occupations/bulk";
+	},
+	searchParams(
+		params: RetrieveOccupationStatistics.SearchParams,
+	): RetrieveOccupationStatistics.SearchParams {
+		return params;
+	},
+	url(params: RetrieveOccupationStatistics.Params): URL {
+		const url = createApiUrl({
+			pathname: retrieveOccupationStatisticsByIds.pathname(),
+			searchParams: retrieveOccupationStatisticsByIds.searchParams(params),
+		});
+		return url;
+	},
+	options(data: RetrieveOccupationStatistics.RequestBody): RequestOptions {
+		return { json: data, method: "post", responseType: "json" };
+	},
+	request(
+		data: RetrieveOccupationStatistics.RequestBody,
+		params: RetrieveOccupationStatistics.Params,
+	): Promise<RetrieveOccupationStatistics.Response> {
+		const url = retrieveOccupationStatisticsByIds.url(params);
+		const options = retrieveOccupationStatisticsByIds.options(data);
+		return request(url, options);
+	},
+};
