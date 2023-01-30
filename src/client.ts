@@ -26,7 +26,7 @@ export namespace GetEntityById {
 
 export const getEntityById = {
 	pathname(params: GetEntityById.PathParams): string {
-		return `/v2/api/entity/${encodeURIComponent(params.id)}`;
+		return `/v2/api/entities/${encodeURIComponent(params.id)}`;
 	},
 	url(params: GetEntityById.Params): URL {
 		const url = createApiUrl({
@@ -94,7 +94,7 @@ export namespace GetEventById {
 
 export const getEventById = {
 	pathname(params: GetEventById.PathParams): string {
-		return `/v2/api/event/${encodeURIComponent(params.id)}`;
+		return `/v2/api/events/${encodeURIComponent(params.id)}`;
 	},
 	url(params: GetEventById.Params): URL {
 		const url = createApiUrl({
@@ -125,7 +125,7 @@ export namespace RetrieveEventsByIds {
 
 export const retrieveEventsByIds = {
 	pathname(): string {
-		return "/v2/api/event/retrieve";
+		return "/v2/api/events/retrieve";
 	},
 	searchParams(params: RetrieveEventsByIds.SearchParams): RetrieveEventsByIds.SearchParams {
 		return params;
@@ -270,7 +270,7 @@ export namespace SearchEvents {
 
 export const searchEvents = {
 	pathname(): string {
-		return "/v2/api/event/search";
+		return "/v2/api/events/search";
 	},
 	searchParams(params: SearchEvents.SearchParams): SearchEvents.SearchParams {
 		return params;
@@ -422,7 +422,7 @@ export namespace SearchRelationRoles {
 
 export const searchRelationRoles = {
 	pathname(): string {
-		return "/v2/api/vocabularies/role/search";
+		return "/v2/api/vocabularies/roles/search";
 	},
 	searchParams(params: SearchRelationRoles.SearchParams): SearchRelationRoles.SearchParams {
 		return params;
@@ -456,7 +456,7 @@ export namespace GetRelationRoleById {
 
 export const getRelationRoleById = {
 	pathname(params: GetRelationRoleById.Params): string {
-		return `/v2/api/vocabularies/role/${params.id}`;
+		return `/v2/api/vocabularies/roles/${params.id}`;
 	},
 	url(params: GetRelationRoleById.Params): URL {
 		const url = createApiUrl({
@@ -487,7 +487,7 @@ export namespace RetrieveRelationRolesByIds {
 
 export const retrieveRelationRolesByIds = {
 	pathname(): string {
-		return "/v2/api/vocabularies/role/retrieve";
+		return "/v2/api/vocabularies/roles/retrieve";
 	},
 	searchParams(
 		params: RetrieveRelationRolesByIds.SearchParams,
@@ -533,7 +533,7 @@ export namespace SearchEventKinds {
 
 export const searchEventKinds = {
 	pathname(): string {
-		return "/v2/api/vocabularies/event_kind/search";
+		return "/v2/api/vocabularies/event_kinds/search";
 	},
 	searchParams(params: SearchEventKinds.SearchParams): SearchEventKinds.SearchParams {
 		return params;
@@ -567,7 +567,7 @@ export namespace GetEventKindById {
 
 export const getEventKindById = {
 	pathname(params: GetEventKindById.Params): string {
-		return `/v2/api/vocabularies/event_kind/${params.id}`;
+		return `/v2/api/vocabularies/event_kinds/${params.id}`;
 	},
 	url(params: GetEventKindById.Params): URL {
 		const url = createApiUrl({
@@ -598,7 +598,7 @@ export namespace RetrieveEventKindsByIds {
 
 export const retrieveEventKindsByIds = {
 	pathname(): string {
-		return "/v2/api/vocabularies/event_kind/retrieve";
+		return "/v2/api/vocabularies/event_kinds/retrieve";
 	},
 	searchParams(params: RetrieveEventKindsByIds.SearchParams): RetrieveEventKindsByIds.SearchParams {
 		return params;
@@ -682,7 +682,7 @@ export namespace BirthStatisticsSearch {
 
 export const searchBirthStatistics = {
 	pathname(): string {
-		return "/v2/api/statistics/birth/search";
+		return "/v2/api/statistics/birth_dates/search";
 	},
 	searchParams(params: BirthStatisticsSearch.SearchParams): BirthStatisticsSearch.SearchParams {
 		return params;
@@ -763,7 +763,7 @@ export namespace DeathStatisticsSearch {
 
 export const searchDeathStatistics = {
 	pathname(): string {
-		return "/v2/api/statistics/death/search";
+		return "/v2/api/statistics/death_dates/search";
 	},
 	searchParams(params: DeathStatisticsSearch.SearchParams): DeathStatisticsSearch.SearchParams {
 		return params;
