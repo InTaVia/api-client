@@ -1,5 +1,15 @@
 # @intavia/api-client
 
+## 0.1.12
+
+### Patch Changes
+
+- [`13b967f`](https://github.com/InTaVia/api-client/commit/13b967f06723e898ea154b86cecc3d503aa7e2e7)
+  Thanks [@stefanprobst](https://github.com/stefanprobst)! - update endpoint pathnames
+
+- [`f86e449`](https://github.com/InTaVia/api-client/commit/f86e4498a1698b7ecfa44cb10e14f8a11847847c)
+  Thanks [@stefanprobst](https://github.com/stefanprobst)! - add bulk statistics endpoints
+
 ## 0.1.11
 
 ### Patch Changes
