@@ -4,6 +4,8 @@ export type UriString = string;
 
 export type UrlString = string;
 
+export type EmptyObject = Record<string, never>;
+
 export interface Bin<T = number> {
 	label: string;
 	count: number;

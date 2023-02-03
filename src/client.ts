@@ -14,7 +14,14 @@ import type {
 	Gender,
 	VocabularyEntry,
 } from "./models.js";
-import type { Bin, IsoDateString, PaginatedRequest, PaginatedResponse, RootNode } from "./types.js";
+import type {
+	Bin,
+	EmptyObject,
+	IsoDateString,
+	PaginatedRequest,
+	PaginatedResponse,
+	RootNode,
+} from "./types.js";
 
 export namespace GetEntityById {
 	export type PathParams = {
@@ -47,7 +54,7 @@ export const getEntityById = {
 //
 
 export namespace RetrieveEntitiesByIds {
-	export type SearchParams = PaginatedRequest<never>;
+	export type SearchParams = PaginatedRequest<EmptyObject>;
 	export type Params = SearchParams;
 	export type RequestBody = {
 		id: Array<Entity["id"]>;
@@ -115,7 +122,7 @@ export const getEventById = {
 //
 
 export namespace RetrieveEventsByIds {
-	export type SearchParams = PaginatedRequest<never>;
+	export type SearchParams = PaginatedRequest<EmptyObject>;
 	export type Params = SearchParams;
 	export type RequestBody = {
 		id: Array<Event["id"]>;
@@ -366,7 +373,7 @@ export const getOccupationById = {
 //
 
 export namespace RetrieveOccupationsByIds {
-	export type SearchParams = PaginatedRequest<never>;
+	export type SearchParams = PaginatedRequest<EmptyObject>;
 	export type Params = SearchParams;
 	export type RequestBody = {
 		id: Array<VocabularyEntry["id"]>;
@@ -477,7 +484,7 @@ export const getRelationRoleById = {
 //
 
 export namespace RetrieveRelationRolesByIds {
-	export type SearchParams = PaginatedRequest<never>;
+	export type SearchParams = PaginatedRequest<EmptyObject>;
 	export type Params = SearchParams;
 	export type RequestBody = {
 		id: Array<VocabularyEntry["id"]>;
@@ -588,7 +595,7 @@ export const getEventKindById = {
 //
 
 export namespace RetrieveEventKindsByIds {
-	export type SearchParams = PaginatedRequest<never>;
+	export type SearchParams = PaginatedRequest<EmptyObject>;
 	export type Params = SearchParams;
 	export type RequestBody = {
 		id: Array<VocabularyEntry["id"]>;
@@ -865,7 +872,7 @@ export const searchOccupationStatistics = {
 //
 
 export namespace RetrieveBirthStatistics {
-	export type SearchParams = PaginatedRequest<never>;
+	export type SearchParams = PaginatedRequest<EmptyObject>;
 	export type Params = SearchParams;
 	export type RequestBody = {
 		id: Array<VocabularyEntry["id"]>;
@@ -905,7 +912,7 @@ export const retrieveBirthStatisticsByIds = {
 //
 
 export namespace RetrieveDeathStatistics {
-	export type SearchParams = PaginatedRequest<never>;
+	export type SearchParams = PaginatedRequest<EmptyObject>;
 	export type Params = SearchParams;
 	export type RequestBody = {
 		id: Array<VocabularyEntry["id"]>;
@@ -945,7 +952,7 @@ export const retrieveDeathStatisticsByIds = {
 //
 
 export namespace RetrieveOccupationStatistics {
-	export type SearchParams = PaginatedRequest<never>;
+	export type SearchParams = PaginatedRequest<EmptyObject>;
 	export type Params = SearchParams;
 	export type RequestBody = {
 		id: Array<VocabularyEntry["id"]>;
