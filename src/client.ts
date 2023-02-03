@@ -50,7 +50,7 @@ export namespace RetrieveEntitiesByIds {
 	export type SearchParams = PaginatedRequest<never>;
 	export type Params = SearchParams;
 	export type RequestBody = {
-		ids: Array<Entity["id"]>;
+		id: Array<Entity["id"]>;
 	};
 	export type Response = PaginatedResponse<Entity>;
 }
@@ -118,7 +118,7 @@ export namespace RetrieveEventsByIds {
 	export type SearchParams = PaginatedRequest<never>;
 	export type Params = SearchParams;
 	export type RequestBody = {
-		ids: Array<Event["id"]>;
+		id: Array<Event["id"]>;
 	};
 	export type Response = PaginatedResponse<Event>;
 }
@@ -369,7 +369,7 @@ export namespace RetrieveOccupationsByIds {
 	export type SearchParams = PaginatedRequest<never>;
 	export type Params = SearchParams;
 	export type RequestBody = {
-		ids: Array<VocabularyEntry["id"]>;
+		id: Array<VocabularyEntry["id"]>;
 	};
 	export type Response = PaginatedResponse<VocabularyEntry>;
 }
@@ -480,7 +480,7 @@ export namespace RetrieveRelationRolesByIds {
 	export type SearchParams = PaginatedRequest<never>;
 	export type Params = SearchParams;
 	export type RequestBody = {
-		ids: Array<VocabularyEntry["id"]>;
+		id: Array<VocabularyEntry["id"]>;
 	};
 	export type Response = PaginatedResponse<VocabularyEntry>;
 }
@@ -591,7 +591,7 @@ export namespace RetrieveEventKindsByIds {
 	export type SearchParams = PaginatedRequest<never>;
 	export type Params = SearchParams;
 	export type RequestBody = {
-		ids: Array<VocabularyEntry["id"]>;
+		id: Array<VocabularyEntry["id"]>;
 	};
 	export type Response = PaginatedResponse<VocabularyEntry>;
 }
@@ -868,7 +868,7 @@ export namespace RetrieveBirthStatistics {
 	export type SearchParams = PaginatedRequest<never>;
 	export type Params = SearchParams;
 	export type RequestBody = {
-		ids: Array<VocabularyEntry["id"]>;
+		id: Array<VocabularyEntry["id"]>;
 	};
 	export type Response = {
 		bins: Array<Bin<IsoDateString>>;
@@ -908,7 +908,7 @@ export namespace RetrieveDeathStatistics {
 	export type SearchParams = PaginatedRequest<never>;
 	export type Params = SearchParams;
 	export type RequestBody = {
-		ids: Array<VocabularyEntry["id"]>;
+		id: Array<VocabularyEntry["id"]>;
 	};
 	export type Response = {
 		bins: Array<Bin<IsoDateString>>;
@@ -948,7 +948,7 @@ export namespace RetrieveOccupationStatistics {
 	export type SearchParams = PaginatedRequest<never>;
 	export type Params = SearchParams;
 	export type RequestBody = {
-		ids: Array<VocabularyEntry["id"]>;
+		id: Array<VocabularyEntry["id"]>;
 	};
 	export type Response = RootNode<VocabularyEntry>;
 }
