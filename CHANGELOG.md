@@ -1,5 +1,12 @@
 # @intavia/api-client
 
+## 0.1.14
+
+### Patch Changes
+
+- [`28b229a`](https://github.com/InTaVia/api-client/commit/28b229ac00182a62bb2628d214c4a1483b603e3d)
+  Thanks [@stefanprobst](https://github.com/stefanprobst)! - fix types
+
 ## 0.1.13
 
 ### Patch Changes
