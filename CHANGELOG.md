@@ -1,5 +1,13 @@
 # @intavia/api-client
 
+## 0.1.13
+
+### Patch Changes
+
+- [`b14220f`](https://github.com/InTaVia/api-client/commit/b14220fa5cb89e224ed82948563bec2dffdda5e1)
+  Thanks [@stefanprobst](https://github.com/stefanprobst)! - request body for bulk endpoints expect
+  id field
+
 ## 0.1.12
 
 ### Patch Changes
