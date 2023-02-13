@@ -127,7 +127,7 @@ export interface HistoricalEvent extends EntityBase {
 export interface Person extends EntityBase {
 	kind: "person";
 	gender?: Gender;
-	occupations?: Array<VocabularyEntry["id"]>;
+	occupations?: Array<Pick<VocabularyEntry, "id" | "label">>;
 }
 
 export interface Place extends EntityBase {
