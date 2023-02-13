@@ -1,5 +1,12 @@
 # @intavia/api-client
 
+## 0.1.15
+
+### Patch Changes
+
+- [`3937c9c`](https://github.com/InTaVia/api-client/commit/3937c9ccf43d24723145778aa36b9943d71a58fa)
+  Thanks [@stefanprobst](https://github.com/stefanprobst)! - fix person.occupations return shape
+
 ## 0.1.14
 
 ### Patch Changes
