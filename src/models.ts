@@ -32,17 +32,20 @@ export interface HistoricalEventType {
 	label: InternationalizedLabel;
 }
 
-export interface MediaKind {
-	id: string;
-	label: string;
-}
+// export interface MediaKind {
+// 	id: string;
+// 	label: InternationalizedLabel;
+// }
 
 export interface MediaResource {
 	id: string;
-	attribution: string;
-	url: UrlString;
-	kind: MediaKind;
+	label: InternationalizedLabel;
 	description?: string;
+	attribution?: string;
+	url: UrlString;
+	// TODO: Should be an actual vocabulary.
+	// kind: MediaKind;
+	kind: "document" | "image" | "video";
 }
 
 export interface VocabularyEntry {
@@ -105,7 +108,7 @@ interface EntityBase {
 	alternativeLabels?: Array<InternationalizedLabel>;
 	// source?: Source;
 	linkedIds?: Array<{ id: string; provider?: { label: string; baseUrl: UrlString } }>;
-	// media?: Array<MediaResource>;
+	media?: Array<MediaResource>;
 	relations: Array<EntityEventRelation>;
 }
 
