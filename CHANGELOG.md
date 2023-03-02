@@ -1,5 +1,15 @@
 # @intavia/api-client
 
+## 0.1.16
+
+### Patch Changes
+
+- [`eca6dd1`](https://github.com/InTaVia/api-client/commit/eca6dd1503e26ae82e911d334be1d416e4dc47e0)
+  Thanks [@stefanprobst](https://github.com/stefanprobst)! - add person biographies
+
+- [`eca6dd1`](https://github.com/InTaVia/api-client/commit/eca6dd1503e26ae82e911d334be1d416e4dc47e0)
+  Thanks [@stefanprobst](https://github.com/stefanprobst)! - allow media resources on entities
+
 ## 0.1.15
 
 ### Patch Changes
