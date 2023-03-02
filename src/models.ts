@@ -66,6 +66,11 @@ export interface Source {
 	citation: string;
 }
 
+export interface Biography {
+	id: string;
+	text: string;
+}
+
 export interface EntityRelationRole {
 	id: string;
 	label: InternationalizedLabel;
@@ -131,6 +136,7 @@ export interface Person extends EntityBase {
 	kind: "person";
 	gender?: Gender;
 	occupations?: Array<Pick<VocabularyEntry, "id" | "label">>;
+	biographies?: Array<Biography["id"]>;
 }
 
 export interface Place extends EntityBase {
