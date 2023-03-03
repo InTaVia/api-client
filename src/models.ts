@@ -69,6 +69,7 @@ export interface Source {
 export interface Biography {
 	id: string;
 	text: string;
+	citation: string;
 }
 
 export interface EntityRelationRole {
