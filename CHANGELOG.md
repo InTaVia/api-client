@@ -1,5 +1,13 @@
 # @intavia/api-client
 
+## 0.1.17
+
+### Patch Changes
+
+- [#29](https://github.com/InTaVia/api-client/pull/29)
+  [`1b691c6`](https://github.com/InTaVia/api-client/commit/1b691c65b28e692f07cca58533340af3a8dc2c21)
+  Thanks [@stefanprobst](https://github.com/stefanprobst)! - add citation field to biography model
+
 ## 0.1.16
 
 ### Patch Changes
