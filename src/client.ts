@@ -188,23 +188,39 @@ export namespace SearchEntities {
 		/**
 		 * Filter persons born before a certain date.
 		 */
-		bornBefore?: IsoDateString;
+		born_before?: IsoDateString;
 		/**
 		 * Filter persons born after a certain date.
 		 */
-		bornAfter?: IsoDateString;
+		born_after?: IsoDateString;
 		/**
 		 * Filter persons died before a certain date.
 		 */
-		diedBefore?: IsoDateString;
+		died_before?: IsoDateString;
 		/**
 		 * Filter persons died after a certain date.
 		 */
-		diedAfter?: IsoDateString;
+		died_after?: IsoDateString;
 		/**
 		 * Limit query to source datasets.
 		 */
 		datasets?: Array<Dataset["id"]>;
+		/**
+		 * Filter for entities related to the searched entity.
+		 */
+		related_entity: string;
+		/**
+		 * Filter for entities related to the searched entity using URIs.
+		 */
+		related_entities_id: Array<Entity["id"]>;
+		/**
+		 * Filter for event roles related to the searched entity.
+		 */
+		event_role: string;
+		/**
+		 * Filter for event roles related to the searched entity using IDs.
+		 */
+		event_roles_id: Array<EntityRelationRole["id"]>;
 	}>;
 	export type Params = SearchParams;
 	export type Response = PaginatedResponse<Entity>;
@@ -657,19 +673,19 @@ export namespace BirthStatisticsSearch {
 		/**
 		 * Filter persons born before a certain date.
 		 */
-		bornBefore?: IsoDateString;
+		born_before?: IsoDateString;
 		/**
 		 * Filter persons born after a certain date.
 		 */
-		bornAfter?: IsoDateString;
+		born_after?: IsoDateString;
 		/**
 		 * Filter persons died before a certain date.
 		 */
-		diedBefore?: IsoDateString;
+		died_before?: IsoDateString;
 		/**
 		 * Filter persons died after a certain date.
 		 */
-		diedAfter?: IsoDateString;
+		died_after?: IsoDateString;
 		/**
 		 * Limit query to source datasets.
 		 */
@@ -738,19 +754,19 @@ export namespace DeathStatisticsSearch {
 		/**
 		 * Filter persons born before a certain date.
 		 */
-		bornBefore?: IsoDateString;
+		born_before?: IsoDateString;
 		/**
 		 * Filter persons born after a certain date.
 		 */
-		bornAfter?: IsoDateString;
+		born_after?: IsoDateString;
 		/**
 		 * Filter persons died before a certain date.
 		 */
-		diedBefore?: IsoDateString;
+		died_before?: IsoDateString;
 		/**
 		 * Filter persons died after a certain date.
 		 */
-		diedAfter?: IsoDateString;
+		died_after?: IsoDateString;
 		/**
 		 * Limit query to source datasets.
 		 */
@@ -819,19 +835,19 @@ export namespace OccupationStatisticsSearch {
 		/**
 		 * Filter persons born before a certain date.
 		 */
-		bornBefore?: IsoDateString;
+		born_before?: IsoDateString;
 		/**
 		 * Filter persons born after a certain date.
 		 */
-		bornAfter?: IsoDateString;
+		born_after?: IsoDateString;
 		/**
 		 * Filter persons died before a certain date.
 		 */
-		diedBefore?: IsoDateString;
+		died_before?: IsoDateString;
 		/**
 		 * Filter persons died after a certain date.
 		 */
-		diedAfter?: IsoDateString;
+		died_after?: IsoDateString;
 		/**
 		 * Limit query to source datasets.
 		 */
