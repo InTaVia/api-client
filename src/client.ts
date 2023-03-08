@@ -208,19 +208,19 @@ export namespace SearchEntities {
 		/**
 		 * Filter for entities related to the searched entity.
 		 */
-		related_entity: string;
+		related_entity?: string;
 		/**
 		 * Filter for entities related to the searched entity using URIs.
 		 */
-		related_entities_id: Array<Entity["id"]>;
+		related_entities_id?: Array<Entity["id"]>;
 		/**
 		 * Filter for event roles related to the searched entity.
 		 */
-		event_role: string;
+		event_role?: string;
 		/**
 		 * Filter for event roles related to the searched entity using IDs.
 		 */
-		event_roles_id: Array<EntityRelationRole["id"]>;
+		event_roles_id?: Array<EntityRelationRole["id"]>;
 	}>;
 	export type Params = SearchParams;
 	export type Response = PaginatedResponse<Entity>;
