@@ -1,5 +1,12 @@
 # @intavia/api-client
 
+## 0.1.19
+
+### Patch Changes
+
+- [`0c90313`](https://github.com/InTaVia/api-client/commit/0c9031343f8d48f1dd8758d09cb559c67569cc42)
+  Thanks [@stefanprobst](https://github.com/stefanprobst)! - make search params optional
+
 ## 0.1.18
 
 ### Patch Changes
