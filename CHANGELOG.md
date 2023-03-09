@@ -1,5 +1,12 @@
 # @intavia/api-client
 
+## 0.1.20
+
+### Patch Changes
+
+- [`406c43c`](https://github.com/InTaVia/api-client/commit/406c43c45710c7360c4693fc63b4439175b2c73e)
+  Thanks [@stefanprobst](https://github.com/stefanprobst)! - adjust media-resource field
+
 ## 0.1.19
 
 ### Patch Changes
