@@ -1,5 +1,11 @@
 # @intavia/api-client
 
+## 0.1.21
+
+### Patch Changes
+
+- Add media resource and biography endpoints to client
+
 ## 0.1.20
 
 ### Patch Changes
