@@ -68,8 +68,10 @@ export interface Source {
 
 export interface Biography {
 	id: string;
+	title?: string;
+	abstract?: string;
 	text: string;
-	citation: string;
+	citation?: string;
 }
 
 export interface EntityRelationRole {

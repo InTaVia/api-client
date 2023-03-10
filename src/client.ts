@@ -5,6 +5,7 @@ import { request } from "@stefanprobst/request";
 
 import { createApiUrl } from "./lib.js";
 import type {
+	Biography,
 	Dataset,
 	Entity,
 	EntityKind,
@@ -12,6 +13,7 @@ import type {
 	Event,
 	EventKind,
 	Gender,
+	MediaResource,
 	VocabularyEntry,
 } from "./models.js";
 import type {
@@ -153,6 +155,146 @@ export const retrieveEventsByIds = {
 	): Promise<RetrieveEventsByIds.Response> {
 		const url = retrieveEventsByIds.url(params);
 		const options = retrieveEventsByIds.options(data);
+		return request(url, options);
+	},
+};
+
+//
+
+export namespace GetMediaResourceById {
+	export type PathParams = {
+		id: MediaResource["id"];
+	};
+	export type Params = PathParams;
+	export type Response = MediaResource;
+}
+
+export const getMediaResourceById = {
+	pathname(params: GetMediaResourceById.PathParams): string {
+		return `/v2/api/media/${encodeURIComponent(params.id)}`;
+	},
+	url(params: GetMediaResourceById.Params): URL {
+		const url = createApiUrl({
+			pathname: getMediaResourceById.pathname(params),
+		});
+		return url;
+	},
+	options(): RequestOptions {
+		return { responseType: "json" };
+	},
+	request(params: GetMediaResourceById.Params): Promise<GetMediaResourceById.Response> {
+		const url = getMediaResourceById.url(params);
+		const options = getMediaResourceById.options();
+		return request(url, options);
+	},
+};
+
+//
+
+export namespace RetrieveMediaResourcesByIds {
+	export type SearchParams = PaginatedRequest<EmptyObject>;
+	export type Params = SearchParams;
+	export type RequestBody = {
+		id: Array<MediaResource["id"]>;
+	};
+	export type Response = PaginatedResponse<MediaResource>;
+}
+
+export const retrieveMediaResourcesByIds = {
+	pathname(): string {
+		return "/v2/api/media/retrieve";
+	},
+	searchParams(
+		params: RetrieveMediaResourcesByIds.SearchParams,
+	): RetrieveMediaResourcesByIds.SearchParams {
+		return params;
+	},
+	url(params: RetrieveMediaResourcesByIds.Params): URL {
+		const url = createApiUrl({
+			pathname: retrieveMediaResourcesByIds.pathname(),
+			searchParams: retrieveMediaResourcesByIds.searchParams(params),
+		});
+		return url;
+	},
+	options(data: RetrieveMediaResourcesByIds.RequestBody): RequestOptions {
+		return { json: data, method: "post", responseType: "json" };
+	},
+	request(
+		data: RetrieveMediaResourcesByIds.RequestBody,
+		params: RetrieveMediaResourcesByIds.Params,
+	): Promise<RetrieveMediaResourcesByIds.Response> {
+		const url = retrieveMediaResourcesByIds.url(params);
+		const options = retrieveMediaResourcesByIds.options(data);
+		return request(url, options);
+	},
+};
+
+//
+
+export namespace GetBiographyById {
+	export type PathParams = {
+		id: Biography["id"];
+	};
+	export type Params = PathParams;
+	export type Response = Biography;
+}
+
+export const getBiographyById = {
+	pathname(params: GetBiographyById.PathParams): string {
+		return `/v2/api/biography/${encodeURIComponent(params.id)}`;
+	},
+	url(params: GetBiographyById.Params): URL {
+		const url = createApiUrl({
+			pathname: getBiographyById.pathname(params),
+		});
+		return url;
+	},
+	options(): RequestOptions {
+		return { responseType: "json" };
+	},
+	request(params: GetBiographyById.Params): Promise<GetBiographyById.Response> {
+		const url = getBiographyById.url(params);
+		const options = getBiographyById.options();
+		return request(url, options);
+	},
+};
+
+//
+
+export namespace RetrieveBiographiesByIds {
+	export type SearchParams = PaginatedRequest<EmptyObject>;
+	export type Params = SearchParams;
+	export type RequestBody = {
+		id: Array<Biography["id"]>;
+	};
+	export type Response = PaginatedResponse<Biography>;
+}
+
+export const retrieveBiographiesByIds = {
+	pathname(): string {
+		return "/v2/api/biography/retrieve";
+	},
+	searchParams(
+		params: RetrieveBiographiesByIds.SearchParams,
+	): RetrieveBiographiesByIds.SearchParams {
+		return params;
+	},
+	url(params: RetrieveBiographiesByIds.Params): URL {
+		const url = createApiUrl({
+			pathname: retrieveBiographiesByIds.pathname(),
+			searchParams: retrieveBiographiesByIds.searchParams(params),
+		});
+		return url;
+	},
+	options(data: RetrieveBiographiesByIds.RequestBody): RequestOptions {
+		return { json: data, method: "post", responseType: "json" };
+	},
+	request(
+		data: RetrieveBiographiesByIds.RequestBody,
+		params: RetrieveBiographiesByIds.Params,
+	): Promise<RetrieveBiographiesByIds.Response> {
+		const url = retrieveBiographiesByIds.url(params);
+		const options = retrieveBiographiesByIds.options(data);
 		return request(url, options);
 	},
 };
