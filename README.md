@@ -1,4 +1,4 @@
-# intavia api client
+# InTaVia api client
 
 this ia a typescript client for the [intavia api](https://intavia-backend.acdh-dev.oeaw.ac.at).
 
