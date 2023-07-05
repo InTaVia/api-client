@@ -1,5 +1,12 @@
 # @intavia/api-client
 
+## 0.1.22
+
+### Patch Changes
+
+- [`19aedba`](https://github.com/InTaVia/api-client/commit/19aedbada53d003dd83a6a294ada228fb7143141)
+  Thanks [@stefanprobst](https://github.com/stefanprobst)! - fix intavia casing in readme
+
 ## 0.1.21
 
 ### Patch Changes
