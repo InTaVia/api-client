@@ -45,7 +45,7 @@ export interface MediaResource {
 	url: UrlString;
 	// TODO: Should be an actual vocabulary.
 	// kind: MediaKind;
-	kind: "document" | "embed" | "image" | "video";
+	kind: "document" | "embed" | "image" | "link" | "video";
 }
 
 export interface VocabularyEntry {
