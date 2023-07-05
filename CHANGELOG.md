@@ -4,6 +4,13 @@
 
 ### Patch Changes
 
+- [`e6ea354`](https://github.com/InTaVia/api-client/commit/e6ea35486d7b862ab6b84bc4c4f48adaf618572a)
+  Thanks [@stefanprobst](https://github.com/stefanprobst)! - add embed media resource kind
+
+## 0.1.21
+
+### Patch Changes
+
 - Add media resource and biography endpoints to client
 
 ## 0.1.20
