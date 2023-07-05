@@ -1,5 +1,12 @@
 # @intavia/api-client
 
+## 0.1.23
+
+### Patch Changes
+
+- [`c6750b9`](https://github.com/InTaVia/api-client/commit/c6750b9a72e44c7813d974bf2ed48e18998c9901)
+  Thanks [@stefanprobst](https://github.com/stefanprobst)! - add link media resource kind
+
 ## 0.1.22
 
 ### Patch Changes
