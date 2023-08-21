@@ -117,6 +117,7 @@ interface EntityBase {
 	// source?: Source;
 	linkedIds?: Array<{ url: UrlString; label: string }>;
 	media?: Array<MediaResource["id"]>;
+	biographies?: Array<Biography["id"]>;
 	relations: Array<EntityEventRelation>;
 }
 
@@ -139,7 +140,6 @@ export interface Person extends EntityBase {
 	kind: "person";
 	gender?: Gender;
 	occupations?: Array<Pick<VocabularyEntry, "id" | "label">>;
-	biographies?: Array<Biography["id"]>;
 }
 
 export interface Place extends EntityBase {
