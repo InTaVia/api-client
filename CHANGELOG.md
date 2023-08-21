@@ -1,5 +1,15 @@
 # @intavia/api-client
 
+## 0.1.24
+
+### Patch Changes
+
+- [`77333c6`](https://github.com/InTaVia/api-client/commit/77333c6749552caf50cc0fcae7d8a373cc5af416)
+  Thanks [@stefanprobst](https://github.com/stefanprobst)! - allow biographies on all entity types
+
+- [`5cac69d`](https://github.com/InTaVia/api-client/commit/5cac69d91e56a77f3d1335c3e7f33f78cb3ab3c7)
+  Thanks [@stefanprobst](https://github.com/stefanprobst)! - update schema for linkedids
+
 ## 0.1.23
 
 ### Patch Changes
