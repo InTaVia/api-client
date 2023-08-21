@@ -115,7 +115,7 @@ interface EntityBase {
 	description?: string;
 	alternativeLabels?: Array<InternationalizedLabel>;
 	// source?: Source;
-	linkedIds?: Array<{ id: string; provider?: { label: string; baseUrl: UrlString } }>;
+	linkedIds?: Array<{ url: UrlString; label: string }>;
 	media?: Array<MediaResource["id"]>;
 	relations: Array<EntityEventRelation>;
 }
