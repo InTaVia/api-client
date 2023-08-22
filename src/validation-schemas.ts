@@ -45,22 +45,18 @@ const placeType = z.object({
 	label: internationalizedLabel,
 });
 
-// const mediaKind = z.object({
-// 	id: z.string(),
-// 	label: z.string(),
-// });
-
 // const source = z.object({
 // 	citation: z.string(),
 // });
 
-// const mediaResource = z.object({
-// 	id: z.string(),
-// 	attribution: z.string(),
-// 	url: urlString,
-// 	kind: mediaKind,
-// 	description: z.string().optional(),
-// });
+const mediaResource = z.object({
+	id: z.string(),
+	label: internationalizedLabel,
+	description: z.string().optional(),
+	attribution: z.string().optional(),
+	url: z.string().url(),
+	kind: z.enum(["document", "embed", "image", "link", "video"]),
+});
 
 const vocabularyEntry = z.object({
 	id: z.string(),
@@ -73,6 +69,14 @@ const vocabularyEntry = z.object({
 			}),
 		)
 		.optional(),
+});
+
+const biography = z.object({
+	id: z.string(),
+	title: z.string().optional(),
+	abstract: z.string().optional(),
+	text: z.string(),
+	citation: z.string().optional(),
 });
 
 export const entityRelationRole = z.object({
@@ -103,18 +107,14 @@ const entityBase = z.object({
 	linkedIds: z
 		.array(
 			z.object({
-				id: z.string(),
-				provider: z
-					.object({
-						label: z.string(),
-						baseUrl: urlString,
-					})
-					.optional(),
+				url: z.string().url(),
+				label: z.string(),
 			}),
 		)
 		.optional(),
-	// media: z.array(mediaResource).optional(),
+	media: z.array(mediaResource.shape.id).optional(),
 	relations: z.array(entityEventRelation),
+	biographies: z.array(biography.shape.id).optional(),
 });
 
 export const culturalHeritageObject = entityBase.extend({

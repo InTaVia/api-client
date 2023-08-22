@@ -106,6 +106,7 @@ export interface Event {
 	// source?: Source;
 	startDate?: IsoDateString;
 	endDate?: IsoDateString;
+
 	relations: Array<EventEntityRelation>;
 }
 
