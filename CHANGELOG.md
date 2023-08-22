@@ -1,5 +1,17 @@
 # @intavia/api-client
 
+## 0.1.25
+
+### Patch Changes
+
+- [`1e7f05f`](https://github.com/InTaVia/api-client/commit/1e7f05f04d779ba44cb8bd0ffc6eb11336dc6584)
+  Thanks [@stefanprobst](https://github.com/stefanprobst)! - add validation schemas for media
+  resource and biographies
+
+- [`a35a214`](https://github.com/InTaVia/api-client/commit/a35a2149b3586fd836299270a966b2f1c0491376)
+  Thanks [@stefanprobst](https://github.com/stefanprobst)! - add media resources and description to
+  events
+
 ## 0.1.24
 
 ### Patch Changes
