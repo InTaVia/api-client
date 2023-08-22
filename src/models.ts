@@ -101,12 +101,12 @@ export interface EntityEventRelation {
 export interface Event {
 	id: string;
 	label: InternationalizedLabel;
-	// description?: string;
+	description?: string;
 	kind: EventKind["id"];
 	// source?: Source;
 	startDate?: IsoDateString;
 	endDate?: IsoDateString;
-
+	media?: Array<MediaResource["id"]>;
 	relations: Array<EventEntityRelation>;
 }
 

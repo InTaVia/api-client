@@ -167,11 +167,12 @@ export const eventKind = z.object({
 export const event = z.object({
 	id: z.string(),
 	label: internationalizedLabel,
-	// description: z.string().optional(),
+	description: z.string().optional(),
 	kind: eventKind.shape.id,
 	// source: source.optional(),
 	startDate: isoDateString.optional(),
 	endDate: isoDateString.optional(),
+	media: z.array(mediaResource.shape.id).optional(),
 	relations: z.array(eventEntityRelation),
 });
 
