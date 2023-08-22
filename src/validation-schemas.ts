@@ -4,7 +4,7 @@ import { defaultPageSize } from "./config.js";
 
 const isoDateString = z.string().datetime();
 
-const urlString = z.string().url();
+// const urlString = z.string().url();
 
 const internationalizedLabel = z.object({
 	default: z.string(),
