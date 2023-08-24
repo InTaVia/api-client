@@ -1027,6 +1027,104 @@ export const searchOccupationStatistics = {
 	},
 };
 
+export namespace EntityTypeStatisticsSearch {
+	export type SearchParams = {
+		/**
+		 * Searches across labels of all entity proxies.
+		 */
+		q?: string;
+		/**
+		 * Limit query to specific entity types.
+		 */
+		kind?: Array<EntityKind>;
+		/**
+		 * Filter persons by occupation label.
+		 */
+		occupation?: string;
+		/**
+		 * Filter persons by occupation id (uri).
+		 */
+		occupations_id?: Array<VocabularyEntry["id"]>;
+		/**
+		 * Filter persons by gender label.
+		 */
+		gender?: Array<string>;
+		/**
+		 * Filter persons by gender id (uri).
+		 */
+		gender_id?: Array<Gender["id"]>;
+		/**
+		 * Filter persons born before a certain date.
+		 */
+		born_before?: IsoDateString;
+		/**
+		 * Filter persons born after a certain date.
+		 */
+		born_after?: IsoDateString;
+		/**
+		 * Filter persons died before a certain date.
+		 */
+		died_before?: IsoDateString;
+		/**
+		 * Filter persons died after a certain date.
+		 */
+		died_after?: IsoDateString;
+		/**
+		 * Limit query to source datasets.
+		 */
+		datasets?: Array<Dataset["id"]>;
+		/**
+		 * Filter for entities related to the searched entity.
+		 */
+		related_entity?: string;
+		/**
+		 * Filter for entities related to the searched entity using URIs.
+		 */
+		related_entities_id?: Array<Entity["id"]>;
+		/**
+		 * Filter for event roles related to the searched entity.
+		 */
+		event_role?: string;
+		/**
+		 * Filter for event roles related to the searched entity using IDs.
+		 */
+		event_roles_id?: Array<EntityRelationRole["id"]>;
+	};
+	export type Params = SearchParams;
+	export type Response = {
+		person: number;
+		place: number;
+		group: number;
+		"cultural-heritage-object": number;
+	};
+}
+
+export const searchEntityTypeStatistics = {
+	pathname(): string {
+		return "/v2/api/statistics/entity_types/search";
+	},
+	searchParams(
+		params: EntityTypeStatisticsSearch.SearchParams,
+	): EntityTypeStatisticsSearch.SearchParams {
+		return params;
+	},
+	url(params: EntityTypeStatisticsSearch.Params): URL {
+		const url = createApiUrl({
+			pathname: searchEntityTypeStatistics.pathname(),
+			searchParams: searchEntityTypeStatistics.searchParams(params),
+		});
+		return url;
+	},
+	options(): RequestOptions {
+		return { responseType: "json" };
+	},
+	request(params: EntityTypeStatisticsSearch.Params): Promise<EntityTypeStatisticsSearch.Response> {
+		const url = searchEntityTypeStatistics.url(params);
+		const options = searchEntityTypeStatistics.options();
+		return request(url, options);
+	},
+};
+
 //
 
 export namespace RetrieveBirthStatistics {
@@ -1143,6 +1241,49 @@ export const retrieveOccupationStatisticsByIds = {
 	): Promise<RetrieveOccupationStatistics.Response> {
 		const url = retrieveOccupationStatisticsByIds.url(params);
 		const options = retrieveOccupationStatisticsByIds.options(data);
+		return request(url, options);
+	},
+};
+
+export namespace RetrieveEntityTypeStatistics {
+	export type SearchParams = PaginatedRequest<EmptyObject>;
+	export type Params = SearchParams;
+	export type RequestBody = {
+		id: Array<VocabularyEntry["id"]>;
+	};
+	export type Response = {
+		person: number;
+		place: number;
+		group: number;
+		"cultural-heritage-object": number;
+	};
+}
+
+export const retrieveEntityTypeStatisticsByIds = {
+	pathname(): string {
+		return "/v2/api/statistics/entity_types/bulk";
+	},
+	searchParams(
+		params: RetrieveEntityTypeStatistics.SearchParams,
+	): RetrieveEntityTypeStatistics.SearchParams {
+		return params;
+	},
+	url(params: RetrieveEntityTypeStatistics.Params): URL {
+		const url = createApiUrl({
+			pathname: retrieveEntityTypeStatisticsByIds.pathname(),
+			searchParams: retrieveEntityTypeStatisticsByIds.searchParams(params),
+		});
+		return url;
+	},
+	options(data: RetrieveEntityTypeStatistics.RequestBody): RequestOptions {
+		return { json: data, method: "post", responseType: "json" };
+	},
+	request(
+		data: RetrieveEntityTypeStatistics.RequestBody,
+		params: RetrieveEntityTypeStatistics.Params,
+	): Promise<RetrieveEntityTypeStatistics.Response> {
+		const url = retrieveEntityTypeStatisticsByIds.url(params);
+		const options = retrieveEntityTypeStatisticsByIds.options(data);
 		return request(url, options);
 	},
 };
