@@ -1,5 +1,12 @@
 # @intavia/api-client
 
+## 0.1.26
+
+### Patch Changes
+
+- [`993b396`](https://github.com/InTaVia/api-client/commit/993b3963b5acb72a3b9c359c166bdbfda462f6e8)
+  Thanks [@samuelbeck](https://github.com/samuelbeck)! - Add entityType statistic endpoints
+
 ## 0.1.25
 
 ### Patch Changes
