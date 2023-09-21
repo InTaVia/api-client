@@ -1,5 +1,12 @@
 # @intavia/api-client
 
+## 0.1.27
+
+### Patch Changes
+
+- [`680d55d`](https://github.com/InTaVia/api-client/commit/680d55d79ea500c3db0f47633aea6a7e44e2eacd)
+  Thanks [@samuelbeck](https://github.com/samuelbeck)! - Fix bug in occupations validation-schema
+
 ## 0.1.26
 
 ### Patch Changes
