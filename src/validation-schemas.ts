@@ -134,7 +134,7 @@ export const historicalEvent = entityBase.extend({
 export const person = entityBase.extend({
 	kind: z.literal("person"),
 	gender: gender.optional(),
-	occupations: z.array(vocabularyEntry.shape.id).optional(),
+	occupations: z.array(vocabularyEntry).optional(),
 });
 
 export const place = entityBase.extend({
